@@ -1,4 +1,4 @@
-// Main JavaScript for Wave on Pulse Radio
+// Main JavaScript for Wave on Pulse Radio with Cyber Theme
 
 document.addEventListener('DOMContentLoaded', function() {
     // Smooth scrolling for navigation links
@@ -38,9 +38,11 @@ document.addEventListener('DOMContentLoaded', function() {
             audio.play();
             this.textContent = '❚❚'; // Pause symbol
             animateProgressBar();
+            createScanEffect();
         } else {
             audio.pause();
             this.textContent = '▶'; // Play symbol
+            stopScanEffect();
         }
     });
 
@@ -69,7 +71,40 @@ document.addEventListener('DOMContentLoaded', function() {
         playBtn.textContent = '▶';
         progress.style.width = '0%';
         timeDisplay.textContent = '0:00';
+        stopScanEffect();
     });
+
+    // Scan line effect for live section
+    let scanInterval;
+    function createScanEffect() {
+        const liveSection = document.querySelector('.live-section');
+        if (!liveSection) return;
+        
+        scanInterval = setInterval(() => {
+            const scanLine = document.createElement('div');
+            scanLine.style.cssText = `
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 2px;
+                background: linear-gradient(90deg, transparent, rgba(0, 153, 255, 0.8), transparent);
+                animation: scanMove 2s linear infinite;
+                pointer-events: none;
+                z-index: 1;
+            `;
+            liveSection.appendChild(scanLine);
+            
+            setTimeout(() => scanLine.remove(), 2000);
+        }, 1000);
+    }
+
+    function stopScanEffect() {
+        if (scanInterval) {
+            clearInterval(scanInterval);
+            scanInterval = null;
+        }
+    }
 
     // Auto-hide navigation on scroll
     let lastScroll = 0;
@@ -79,63 +114,27 @@ document.addEventListener('DOMContentLoaded', function() {
         const currentScroll = window.pageYOffset;
         
         if (currentScroll > 100) {
-            header.style.background = 'rgba(0, 0, 0, 0.95)';
+            header.style.background = 'rgba(0, 153, 255, 0.2)';
+            header.style.boxShadow = '0 10px 30px rgba(0, 153, 255, 0.3)';
         } else {
-            header.style.background = 'rgba(0, 0, 0, 0.8)';
+            header.style.background = 'rgba(0, 153, 255, 0.1)';
+            header.style.boxShadow = '0 10px 30px rgba(0, 153, 255, 0.2)';
         }
         
         lastScroll = currentScroll;
-    });
-
-    // Form submission (if any forms are added later)
-    function handleFormSubmit(event) {
-        event.preventDefault();
-        
-        // Get form data
-        const formData = new FormData(event.target);
-        const data = Object.fromEntries(formData);
-        
-        // Send data to server (placeholder)
-        console.log('Form data:', data);
-        
-        // Show success message
-        const successMessage = document.createElement('div');
-        successMessage.className = 'form-success';
-        successMessage.textContent = 'Thank you for your submission!';
-        successMessage.style.cssText = `
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.9);
-            color: #fff;
-            padding: 2rem;
-            border-radius: 10px;
-            z-index: 10000;
-        `;
-        
-        document.body.appendChild(successMessage);
-        
-        setTimeout(() => {
-            successMessage.remove();
-        }, 3000);
-    }
-
-    // Add form submit event listeners (if forms exist)
-    const forms = document.querySelectorAll('form');
-    forms.forEach(form => {
-        form.addEventListener('submit', handleFormSubmit);
     });
 
     // Add hover effects to cards
     const cards = document.querySelectorAll('.feature-card, .podcast-card');
     cards.forEach(card => {
         card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px) scale(1.02)';
+            this.style.transform = 'translateY(-10px) scale(1.02)';
+            this.style.boxShadow = '0 20px 40px rgba(0, 153, 255, 0.4), 0 0 30px rgba(0, 153, 255, 0.3)';
         });
         
         card.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = '0 20px 40px rgba(0, 153, 255, 0.3), 0 0 20px rgba(0, 153, 255, 0.2)';
         });
     });
 
@@ -150,6 +149,14 @@ document.addEventListener('DOMContentLoaded', function() {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
+                
+                // Add glitch effect on entry
+                if (entry.target.classList.contains('feature-card') || entry.target.classList.contains('podcast-card')) {
+                    entry.target.style.animation = 'glitchEffect 0.3s ease-in-out';
+                    setTimeout(() => {
+                        entry.target.style.animation = '';
+                    }, 300);
+                }
             }
         });
     }, observerOptions);
@@ -173,12 +180,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 100);
     });
 
-    // Theme toggle (if needed in future)
-    function toggleTheme() {
-        document.documentElement.classList.toggle('dark');
-        document.documentElement.classList.toggle('light');
-    }
-
     // Add keyboard shortcuts
     document.addEventListener('keydown', function(e) {
         // Space to play/pause
@@ -189,7 +190,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // M to mute/unmute (placeholder)
         if (e.code === 'KeyM') {
-            // Add mute functionality here
             console.log('Mute toggled');
         }
     });
@@ -213,6 +213,8 @@ function showNotification(message, type = 'info') {
         border-radius: 10px;
         z-index: 10000;
         animation: slideIn 0.3s ease;
+        border: 1px solid rgba(0, 153, 255, 0.5);
+        box-shadow: 0 5px 20px rgba(0, 153, 255, 0.3);
     `;
     
     document.body.appendChild(notification);
@@ -222,8 +224,9 @@ function showNotification(message, type = 'info') {
     }, 3000);
 }
 
-// Add CSS for notifications
-const notificationStyles = `
+// Add CSS for notifications and animations
+const styleSheet = document.createElement('style');
+styleSheet.textContent = `
     @keyframes slideIn {
         from {
             transform: translateX(100%);
@@ -233,6 +236,18 @@ const notificationStyles = `
             transform: translateX(0);
             opacity: 1;
         }
+    }
+    
+    @keyframes scanMove {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+    }
+    
+    @keyframes glitchEffect {
+        0%, 100% { transform: translate(0); }
+        25% { transform: translate(-2px, 2px); }
+        50% { transform: translate(-2px, -2px); }
+        75% { transform: translate(2px, 2px); }
     }
     
     .notification-success {
@@ -246,20 +261,28 @@ const notificationStyles = `
     .notification-warning {
         background: linear-gradient(45deg, #ffc107, #fd7e14) !important;
     }
+    
+    /* Add pulse effect to play button */
+    .play-btn {
+        animation: pulseGlow 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulseGlow {
+        0%, 100% { box-shadow: 0 10px 25px rgba(0, 153, 255, 0.3); }
+        50% { box-shadow: 0 15px 35px rgba(0, 153, 255, 0.5); }
+    }
 `;
 
-// Add notification styles to head
-const styleSheet = document.createElement('style');
-styleSheet.textContent = notificationStyles;
 document.head.appendChild(styleSheet);
 
 // Export for potential future use
 window.WaveOnPulse = {
     play: () => {
-        playBtn.click();
+        document.querySelector('.play-btn').click();
     },
     pause: () => {
-        if (isPlaying) playBtn.click();
+        const playBtn = document.querySelector('.play-btn');
+        if (playBtn.textContent === '❚❚') playBtn.click();
     },
     showNotification: showNotification
 };

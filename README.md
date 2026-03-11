@@ -1,130 +1,110 @@
 # Wave on Pulse
 
-Wave on Pulse is a decentralized broadcasting network built on the PulseChain blockchain. This repository contains the source code for the public-facing website.
+Decentralized radio platform built on PulseChain with cyber-themed design.
 
-## 🚀 Features
+## Features
 
-- **Decentralized Radio**: Live streaming without central servers
-- **Censorship-Resistant**: Built on blockchain technology
-- **PulseChain Integration**: Native support for PulseChain ecosystem
-- **Clearnet Access**: Available to everyone, not just crypto users
-- **Mobile Responsive**: Works on all devices
-- **Modern Design**: PulseChain-themed colors and animations
+- **PulseChain Integration**: Built with PulseChain color scheme and branding
+- **Cyber Theme**: Futuristic design with neon effects and animations
+- **Dark Mode**: Optimized for low-light viewing with dark backgrounds
+- **Responsive Design**: Works on desktop, tablet, and mobile devices
+- **Audio Player**: Built-in radio player with smooth controls
+- **Censorship-Resistant**: Decentralized broadcasting platform
 
-## 📁 Project Structure
+## Color Scheme
 
-```
-wave-on-pulse/
-├── public/
-│   └── index.html          # Main HTML file
-├── src/
-│   ├── styles/
-│   │   └── main.css        # All CSS styles
-│   ├── scripts/
-│   │   └── main.js         # JavaScript functionality
-│   └── assets/
-│       └── (images, audio, etc.)
-├── docs/                    # Documentation
-├── tests/                  # Test files
-└── README.md              # This file
-```
+Based on PulseChain branding:
+- Primary Blue: #0099ff (vibrant blue)
+- Dark Background: #0a0a0a (pure black)
+- Accent Colors: Various blues, purples, and cyans
 
-## 🔧 Technologies Used
-
-- **HTML5**: Semantic markup
-- **CSS3**: Modern styling with animations
-- **JavaScript ES6+**: Interactive features
-- **PulseChain**: Blockchain integration
-- **Responsive Design**: Mobile-first approach
-
-## 🛠️ Features
-
-### Live Radio
-- Real-time audio streaming
-- Play/pause controls
-- Progress bar
-- Volume control
-
-### Podcast Library
-- Featured shows
-- Episode listings
-- Show descriptions
-- Metadata display
-
-### Schedule
-- Weekly programming
-- Time zone support
-- Show information
-
-### About Section
-- Project information
-- Statistics
-- Mission statement
-
-## 📱 Design System
-
-### Color Palette
-- **Primary**: #ffc42b (PulseChain gold)
-- **Secondary**: #ff6b6b (accent red)
-- **Tertiary**: #4ecdc4 (teal accent)
-- **Background**: Dark gradient with transparency
-
-### Typography
-- **Headings**: Inter, bold weights
-- **Body**: Inter, regular weight
-- **Monospace**: For code snippets
-
-### Components
-- **Navigation**: Sticky header with active states
-- **Buttons**: Gradient hover effects
-- **Cards**: Hover animations
-- **Progress Bars**: Animated loading
-
-## 📄 Usage
-
-### Running Locally
+## Installation
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/YourUsername/wave-on-pulse.git
+   git clone https://github.com/yourusername/wave-on-pulse.git
    cd wave-on-pulse
    ```
 
-2. Open `public/index.html` in your browser
+2. Install dependencies (if any):
+   ```bash
+   npm install
+   ```
 
-### Building
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-This is a static site - no build process required. Simply open the HTML file in a browser.
+4. Open your browser and navigate to:
+   ```
+   http://localhost:8080
+   ```
 
-## 🔐 Security
+## Project Structure
 
-- All external resources use HTTPS
-- Content Security Policy headers can be added
-- Input validation in JavaScript
-- Secure coding practices
+```
+Wave/
+├── public/
+│   └── index.html          # Main HTML file
+├── src/
+│   ├── scripts/
+│   │   └── main.js         # JavaScript functionality
+│   └── styles/
+│       └── main.css         # Complete styling with cyber theme
+├── assets/                 # Images and media files
+└── package.json           # Project configuration
+```
 
-## 📱 Responsive Design
+## Key Features
 
-- Mobile-first approach
-- Breakpoints at 768px and 480px
-- Touch-friendly interactions
-- Optimized for all devices
+### Cyber Theme Elements
+- **Neon Glow Effects**: Animated text and button glows
+- **Glitch Animations**: Subtle glitch effects on card entries
+- **Scan Lines**: Moving scan lines for live section
+- **Pulse Effects**: Animated button and number pulses
 
-## 🌐 Accessibility
+### PulseChain Branding
+- **Vibrant Blue Palette**: Consistent use of #0099ff and related colors
+- **Dark Backgrounds**: #0a0a0a background for optimal contrast
+- **Gradient Effects**: Smooth color transitions throughout
 
-- Semantic HTML5 elements
-- ARIA labels where appropriate
-- Keyboard navigation support
-- Screen reader friendly
+### Interactive Features
+- **Audio Player**: Play/pause functionality with progress tracking
+- **Smooth Scrolling**: Navigation with smooth scroll behavior
+- **Hover Effects**: Enhanced hover states with transformations
+- **Loading Animations**: Smooth page load transitions
 
-## 📚 Documentation
+## Browser Compatibility
 
-See the [docs/](./docs/) directory for:
-- API documentation
-- Development guidelines
-- Deployment instructions
+- Chrome/Chromium (recommended)
+- Firefox
+- Safari
+- Edge
 
-## 🤝 Contributing
+## Development
+
+### Adding New Features
+1. Update CSS in `src/styles/main.css`
+2. Add JavaScript functionality in `src/scripts/main.js`
+3. Modify HTML structure in `index.html`
+
+### Customizing Colors
+Edit the color variables in the CSS file:
+```css
+:root {
+    --primary-blue: #0099ff;
+    --dark-bg: #0a0a0a;
+    --accent-cyan: #00ffff;
+    --accent-purple: #6f00ff;
+}
+```
+
+## License
+
+MIT License - see LICENSE file for details.
+
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -132,76 +112,13 @@ See the [docs/](./docs/) directory for:
 4. Test thoroughly
 5. Submit a pull request
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
-
-## 🌟 Acknowledgments
-
-- PulseChain team for the blockchain platform
-- Open source community for libraries and tools
-- Design inspiration from modern web trends
-
-## 🚀 Deployment
-
-### Static Hosting
-
-1. Build your site (if needed)
-2. Upload files to your hosting provider
-3. Configure domain settings
-4. Test deployment
-
-### CDN Integration
-
-For optimal performance, consider using a CDN:
-- Cloudflare
-- AWS CloudFront
-- Fastly
-
-## 📊 Analytics
-
-To add analytics:
-1. Sign up for a service (e.g., Google Analytics)
-2. Add tracking code to the <head> section
-3. Configure goals and events
-4. Monitor performance
-
-## 🔒 Privacy
-
-- No tracking by default
-- Cookie consent can be added
-- GDPR compliance considerations
-- Data protection best practices
-
-## 🔄 Updates
-
-### Version History
-
-- **v1.0.0**: Initial release
-- **v1.1.0**: Mobile improvements
-- **v1.2.0**: Accessibility enhancements
-
-### Roadmap
-
-- [ ] Podcast upload functionality
-- [ ] User accounts
-- [ ] Live chat
-- [ ] Mobile app
-
-## 📞 Support
+## Support
 
 For issues and questions:
-1. Check the FAQ in docs/
-2. Search existing issues
-3. Create a new issue with details
-4. Include browser/OS information
-
-## 🙏 Credits
-
-- Design: Modern web design principles
-- Development: Best practices and standards
-- Testing: Cross-browser compatibility
+- Create an issue on GitHub
+- Check the FAQ section
+- Review the documentation
 
 ---
 
-**Wave on Pulse** - Decentralized radio for the PulseChain era. Built with ❤️ and blockchain technology.
+**Built with ❤️ for the decentralized future**

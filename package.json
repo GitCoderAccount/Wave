@@ -1,7 +1,7 @@
 {
   "name": "wave-on-pulse",
   "version": "1.0.0",
-  "description": "Decentralized broadcasting network for PulseChain",
+  "description": "Decentralized radio platform for PulseChain with cyber theme",
   "main": "index.html",
   "scripts": {
     "start": "python3 -m http.server 8080",
@@ -13,12 +13,13 @@
     "decentralized",
     "radio",
     "blockchain",
-    "crypto"
+    "crypto",
+    "cyber",
+    "dark-mode",
+    "neon"
   ],
   "author": "Wave on Pulse Team",
   "license": "MIT",
-  "dependencies": {},
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/YourUsername/wave-on-pulse.git"
@@ -26,5 +27,9 @@
   "bugs": {
     "url": "https://github.com/YourUsername/wave-on-pulse/issues"
   },
-  "homepage": "https://github.com/YourUsername/wave-on-pulse#readme"
+  "homepage": "https://github.com/YourUsername/wave-on-pulse#readme",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "dependencies": {}
 }
