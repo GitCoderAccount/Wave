@@ -1,0 +1,30 @@
+{
+  "name": "wave-on-pulse",
+  "version": "1.0.0",
+  "description": "Decentralized broadcasting network for PulseChain",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "dev": "python3 -m http.server 8080",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pulsechain",
+    "decentralized",
+    "radio",
+    "blockchain",
+    "crypto"
+  ],
+  "author": "Wave on Pulse Team",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YourUsername/wave-on-pulse.git"
+  },
+  "bugs": {
+    "url": "https://github.com/YourUsername/wave-on-pulse/issues"
+  },
+  "homepage": "https://github.com/YourUsername/wave-on-pulse#readme"
+}
