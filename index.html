@@ -5,24 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Wave on Pulse Radio</title>
   <link rel="icon" type="image/x-icon" href="public/WaveLogo.jpg">
+  
+  <!-- Bubblegum Sans from Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap" rel="stylesheet">
 
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
 
     body {
-      font-family:'Roboto',sans-serif;
+      font-family: 'Bubblegum Sans', cursive, system-ui, sans-serif;
       background:#0a0a0a;
       color:#e0f7ff;
       line-height:1.6;
       overflow-x:hidden;
     }
 
-    h1,h2,h3,.marquee-text,.logo-title,.section-title {
-      font-family:'Playfair Display',serif;
-      font-weight:700;
+    /* Apply Bubblegum Sans to all text elements */
+    h1, h2, h3, h4, p, a, button, .marquee-text, .logo-title, .section-title,
+    .nav-link, .hero-subtitle, .btn, .footer-section, .footer-bottom {
+      font-family: 'Bubblegum Sans', cursive, system-ui, sans-serif;
     }
 
     /* Marquee */
@@ -98,7 +101,7 @@
       box-shadow:0 10px 30px rgba(255,0,110,0.35);
     }
 
-    /* Hero – balanced cutoff (top ~12% under header) */
+    /* Hero */
     .hero {
       position:relative;
       height: calc(100vh - 44px);
@@ -120,10 +123,10 @@
     }
 
     .hero-overlay {
-      position:absolute;
-      inset:0;
-      background:linear-gradient(to bottom, transparent 3%, rgba(0,0,0,0.62) 45%, #0a0a0a 80%);
-      z-index:1;
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 10%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.45) 100%);
+      z-index: 1;
     }
 
     .hero-content {
@@ -140,7 +143,6 @@
 
     .hero-title {
       font-size:clamp(5.5rem,14vw,10rem);
-      font-weight:900;
       background:linear-gradient(90deg,#00ccff,#ffffff,#0099ff);
       -webkit-background-clip:text;
       background-clip:text;
@@ -163,7 +165,6 @@
       justify-content:center;
     }
 
-    /* Sound toggle – matches button style, now works */
     .sound-toggle {
       position:absolute;
       bottom:6rem;
@@ -193,7 +194,6 @@
     .btn {
       padding:18px 42px;
       font-size:1.15rem;
-      font-weight:700;
       text-transform:uppercase;
       letter-spacing:1.2px;
       border-radius:50px;
@@ -213,7 +213,6 @@
 
     .btn-secondary:hover { background:rgba(0,204,255,0.16); transform:translateY(-5px); }
 
-    /* Live play button */
     #play-live {
       width:110px;
       height:110px;
@@ -230,7 +229,6 @@
       box-shadow:0 0 50px rgba(0,204,255,0.7);
       cursor:pointer;
       transition:all 0.35s;
-      font-weight:900;
     }
 
     #play-live:hover { transform:scale(1.15); box-shadow:0 0 70px rgba(0,255,255,0.9); }
@@ -509,40 +507,27 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
 
-      // Video + sound toggle – audited & working
+      // Video + sound toggle
       const video = document.getElementById('hero-video');
       const toggle = document.getElementById('video-sound-toggle');
       if (video && toggle) {
-        // Force initial state
         video.muted = true;
         toggle.textContent = '🔇';
 
         toggle.addEventListener('click', () => {
-          const wasMuted = video.muted;
           video.muted = !video.muted;
           toggle.textContent = video.muted ? '🔇' : '🔊';
-
-          console.log('Toggle clicked → muted:', video.muted); // debug
-
-          // If unmuting and video paused → try play
           if (!video.muted && video.paused) {
-            video.play()
-              .then(() => console.log('Video started on unmute'))
-              .catch(err => console.log('Play on unmute failed:', err));
+            video.play().catch(() => {});
           }
         });
 
-        // Autoplay attempt (muted)
         const tryPlayVideo = () => {
-          video.play()
-            .then(() => console.log('Video autoplay succeeded (muted)'))
-            .catch(err => console.log('Autoplay blocked:', err));
+          video.play().catch(() => {});
         };
         window.addEventListener('load', tryPlayVideo);
         document.addEventListener('click', tryPlayVideo, {once:true});
         document.addEventListener('touchstart', tryPlayVideo, {once:true});
-      } else {
-        console.warn('Video or toggle element not found');
       }
 
       // Click sound
@@ -557,13 +542,13 @@
         });
       }
 
-      // Live stream
+      // Live stream play/pause
       const liveAudio = document.getElementById('live-stream');
       const playBtn = document.getElementById('play-live');
       if (liveAudio && playBtn) {
         playBtn.addEventListener('click', () => {
           if (liveAudio.paused) {
-            liveAudio.play().catch(err => console.log('Live play blocked:', err));
+            liveAudio.play().catch(err => console.log('Play blocked:', err));
             playBtn.textContent = '⏸';
           } else {
             liveAudio.pause();
@@ -572,7 +557,7 @@
         });
       }
 
-      // Typing effect
+      // Typing effect for hero title
       const title = document.querySelector('.hero-title');
       if (title) {
         const txt = title.textContent.trim();
@@ -587,7 +572,7 @@
         setTimeout(type, 900);
       }
 
-      // Smooth scroll
+      // Smooth scroll for nav links
       document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', e => {
           e.preventDefault();
