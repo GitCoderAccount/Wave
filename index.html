@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Wave on Pulse Radio</title>
   <link rel="icon" type="image/x-icon" href="public/WaveLogo.jpg">
-  
+ 
   <!-- Bubblegum Sans from Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +24,7 @@
 
     /* Apply Bubblegum Sans to all text elements */
     h1, h2, h3, h4, p, a, button, .marquee-text, .logo-title, .section-title,
-    .nav-link, .hero-subtitle, .btn, .footer-section, .footer-bottom {
+    .nav-link, .footer-section, .footer-bottom {
       font-family: 'Bubblegum Sans', cursive, system-ui, sans-serif;
     }
 
@@ -72,7 +72,7 @@
     }
 
     .logo-title {
-      font-size:2.7rem;
+      font-size:3.3rem; /* Slightly larger as requested */
       background:linear-gradient(90deg,#0099ff,#00ccff,#00ffff);
       -webkit-background-clip:text; color:transparent;
       text-shadow:0 0 25px rgba(0,204,255,0.6);
@@ -101,7 +101,7 @@
       box-shadow:0 10px 30px rgba(255,0,110,0.35);
     }
 
-    /* Hero */
+    /* Hero – cleaned up, no title/subtitle/buttons */
     .hero {
       position:relative;
       height: calc(100vh - 44px);
@@ -120,49 +120,14 @@
       width:100%;
       height:100%;
       object-fit:cover;
+      filter: brightness(1.18) saturate(1.22); /* Extra brightness boost as requested */
     }
 
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, transparent 10%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.45) 100%);
+      background: linear-gradient(to bottom, transparent 25%, rgba(0,0,0,0.12) 55%, rgba(0,0,0,0.28) 100%); /* Even lighter for brighter video */
       z-index: 1;
-    }
-
-    .hero-content {
-      position:relative;
-      z-index:2;
-      height:100%;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      padding:0 24px;
-    }
-
-    .hero-title {
-      font-size:clamp(5.5rem,14vw,10rem);
-      background:linear-gradient(90deg,#00ccff,#ffffff,#0099ff);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-      text-shadow:0 0 50px rgba(0,204,255,0.7);
-      margin-bottom:1.3rem;
-    }
-
-    .hero-subtitle {
-      font-size:1.8rem;
-      max-width:860px;
-      margin:0 auto 3.2rem;
-      opacity:0.94;
-    }
-
-    .hero-actions {
-      display:flex;
-      gap:1.8rem;
-      flex-wrap:wrap;
-      justify-content:center;
     }
 
     .sound-toggle {
@@ -191,28 +156,7 @@
       background:linear-gradient(135deg,#00ccff,#00ffff);
     }
 
-    .btn {
-      padding:18px 42px;
-      font-size:1.15rem;
-      text-transform:uppercase;
-      letter-spacing:1.2px;
-      border-radius:50px;
-      cursor:pointer;
-      position:relative;
-      overflow:hidden;
-      border:1px solid rgba(0,204,255,0.5);
-      box-shadow:0 0 25px rgba(0,204,255,0.35);
-      transition:all 0.4s;
-    }
-
-    .btn-primary { background:linear-gradient(135deg,#0099ff,#00ccff); color:#000; }
-
-    .btn-primary:hover { transform:translateY(-6px) scale(1.08); box-shadow:0 20px 50px rgba(0,204,255,0.75); }
-
-    .btn-secondary { background:transparent; border:2.5px solid #00ccff; color:#00ccff; }
-
-    .btn-secondary:hover { background:rgba(0,204,255,0.16); transform:translateY(-5px); }
-
+    /* Live play button */
     #play-live {
       width:110px;
       height:110px;
@@ -314,11 +258,11 @@
     @media (max-width:900px) {
       .header-inner { flex-direction:column; align-items:flex-start; gap:1.2rem; padding:0 5vw; }
       nav { width:100%; justify-content:flex-start; }
+      .logo-title { font-size:2.8rem; }
     }
 
     @media (max-width:768px) {
       .hero { height: calc(100vh - 100px); margin-top: -8vh; }
-      .hero-title { font-size:clamp(4.8rem,16vw,8.5rem); }
       .section { padding:6rem 0; }
       #play-live { width:100px; height:100px; font-size:2.4rem; }
       .sound-toggle { bottom:4rem; right:1.5rem; width:48px; height:48px; font-size:1.5rem; }
@@ -353,18 +297,7 @@
           <source src="public/Radio_Dial_Frequency_Pattern_Video (1).mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
-
         <button class="sound-toggle" id="video-sound-toggle" title="Toggle video sound">🔇</button>
-
-        <div class="hero-content">
-          <h1 class="hero-title">WAVE ON PULSE</h1>
-          <p class="hero-subtitle">Decentralized. Uncensorable. PulseChain Native Radio.</p>
-
-          <div class="hero-actions">
-            <button class="btn btn-primary">Listen Live</button>
-            <button class="btn btn-secondary">Explore Podcasts</button>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -534,7 +467,7 @@
       const click = document.getElementById('click-sound');
       if (click) {
         click.volume = 0.35;
-        document.querySelectorAll('.btn, #play-live, .nav-link, .sound-toggle').forEach(el => {
+        document.querySelectorAll('.nav-link, .sound-toggle, #play-live').forEach(el => {
           el.addEventListener('click', () => {
             click.currentTime = 0;
             click.play().catch(()=>{});
@@ -555,21 +488,6 @@
             playBtn.textContent = '▶';
           }
         });
-      }
-
-      // Typing effect for hero title
-      const title = document.querySelector('.hero-title');
-      if (title) {
-        const txt = title.textContent.trim();
-        title.textContent = '';
-        let i = 0;
-        const type = () => {
-          if (i < txt.length) {
-            title.textContent += txt.charAt(i++);
-            setTimeout(type, 65);
-          }
-        };
-        setTimeout(type, 900);
       }
 
       // Smooth scroll for nav links
