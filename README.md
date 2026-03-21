@@ -1,6 +1,6 @@
 # Wave on Pulse
 
-![Wave on Pulse](public/WaveLogo.jpg)
+![Wave on Pulse](public/banner.png)
 
 Decentralized radio platform built on PulseChain with cyber-themed design.
 
