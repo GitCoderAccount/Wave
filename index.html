@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Wave on Pulse</title>
   <link rel="icon" type="image/x-icon" href="public/WaveLogo.jpg">
- 
-  <!-- Bubblegum Sans from Google Fonts -->
+  
+  <!-- Bubblegum Sans from Google Fonts (preload for faster font loading) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap" rel="stylesheet">
@@ -22,20 +22,19 @@
       overflow-x:hidden;
     }
 
-    /* Apply Bubblegum Sans to all text elements */
     h1, h2, h3, h4, p, a, button, .marquee-text, .logo-title, .section-title,
-    .nav-link, .footer-section, .footer-bottom {
+    .nav-link, .footer-section, .footer-bottom, .footer-brand {
       font-family: 'Bubblegum Sans', cursive, system-ui, sans-serif;
     }
 
-    /* Marquee */
+    /* Marquee – kept but reduced shadow intensity */
     .marquee-container {
       position:sticky; top:0; z-index:9999;
-      background:linear-gradient(90deg,rgba(0,153,255,0.88),rgba(0,204,255,0.72),rgba(0,255,255,0.58));
+      background:linear-gradient(90deg,rgba(0,153,255,0.85),rgba(0,204,255,0.7),rgba(0,255,255,0.55));
       border-bottom:2px solid #00ccff;
-      box-shadow:0 5px 30px rgba(0,204,255,0.5);
+      box-shadow:0 4px 20px rgba(0,204,255,0.35);
       padding:10px 0;
-      backdrop-filter:blur(14px);
+      backdrop-filter:blur(12px);
     }
 
     .marquee-text {
@@ -43,7 +42,7 @@
       letter-spacing:3px;
       text-transform:uppercase;
       color:#e0f7ff;
-      text-shadow:0 0 20px #00ccff;
+      text-shadow:0 0 15px #00ccff;
       white-space:nowrap;
       animation:marqueeScroll 100s linear infinite;
     }
@@ -55,9 +54,9 @@
       position:sticky;
       top:44px;
       z-index:900;
-      background:rgba(8,12,25,0.96);
-      backdrop-filter:blur(22px);
-      border-bottom:1px solid rgba(0,204,255,0.4);
+      background:rgba(8,12,25,0.94);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(0,204,255,0.35);
       padding:0.8rem 0;
     }
 
@@ -72,11 +71,37 @@
     }
 
     .logo-title {
-      font-size:5.0rem; /* Slightly larger as requested */
-      background:linear-gradient(90deg,#0099ff,#00ccff,#00ffff);
-      -webkit-background-clip:text; color:transparent;
-      text-shadow:0 0 25px rgba(0,204,255,0.6);
-      white-space:nowrap;
+      font-size: 5.0rem;
+      background: linear-gradient(90deg, #0099ff, #00ccff, #00ffff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 25px rgba(0,204,255,0.6);
+      white-space: normal;
+      line-height: 1.05;
+      animation: pulse-glow 4s ease-in-out infinite alternate;
+      transition: 
+        background 0.6s ease,
+        text-shadow 0.45s ease,
+        transform 0.35s ease;
+      will-change: background, text-shadow, transform;
+    }
+
+    .logo-title:hover {
+      animation-play-state: paused;
+      background: linear-gradient(90deg, #ff006e, #ff3399, #ff66cc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      text-shadow: 
+        0 0 60px #ff006e,
+        0 0 90px #ff3399,
+        0 0 120px #ff66cc;
+      transform: translateY(-6px) scale(1.03);
+    }
+
+    @keyframes pulse-glow {
+      from { text-shadow: 0 0 25px rgba(0,204,255,0.6), 0 0 45px rgba(0,204,255,0.4); }
+      to   { text-shadow: 0 0 45px rgba(0,204,255,0.95), 0 0 75px rgba(0,204,255,0.75), 0 0 110px rgba(0,153,255,0.55); }
     }
 
     nav {
@@ -88,9 +113,14 @@
     }
 
     .nav-link {
-      color:#e0f7ff; text-decoration:none; padding:0.6rem 1.2rem;
-      border-radius:10px; background:rgba(0,153,255,0.15); border:1px solid rgba(0,204,255,0.4);
-      transition:all 0.35s; font-size:1.02rem;
+      color:#e0f7ff;
+      text-decoration:none;
+      padding:0.6rem 1.2rem;
+      border-radius:10px;
+      background:rgba(0,153,255,0.15);
+      border:1px solid rgba(0,204,255,0.35);
+      transition:all 0.35s;
+      font-size:1.02rem;
     }
 
     .nav-link:hover {
@@ -101,7 +131,7 @@
       box-shadow:0 10px 30px rgba(255,0,110,0.35);
     }
 
-    /* Hero – cleaned up, no title/subtitle/buttons */
+    /* Hero */
     .hero {
       position:relative;
       height: calc(100vh - 44px);
@@ -120,13 +150,13 @@
       width:100%;
       height:100%;
       object-fit:cover;
-      filter: brightness(1.18) saturate(1.22); /* Extra brightness boost as requested */
+      filter: brightness(1.18) saturate(1.22);
     }
 
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, transparent 25%, rgba(0,0,0,0.12) 55%, rgba(0,0,0,0.28) 100%); /* Even lighter for brighter video */
+      background: linear-gradient(to bottom, transparent 25%, rgba(0,0,0,0.12) 55%, rgba(0,0,0,0.28) 100%);
       z-index: 1;
     }
 
@@ -146,14 +176,14 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      box-shadow:0 0 25px rgba(0,204,255,0.6);
+      box-shadow:0 0 20px rgba(0,204,255,0.5);
       transition:all 0.4s;
+      will-change: transform, box-shadow;
     }
 
     .sound-toggle:hover {
       transform:translateY(-4px) scale(1.1);
       box-shadow:0 12px 40px rgba(0,204,255,0.9);
-      background:linear-gradient(135deg,#00ccff,#00ffff);
     }
 
     /* Live play button */
@@ -173,6 +203,7 @@
       box-shadow:0 0 50px rgba(0,204,255,0.7);
       cursor:pointer;
       transition:all 0.35s;
+      will-change: transform, box-shadow;
     }
 
     #play-live:hover { transform:scale(1.15); box-shadow:0 0 70px rgba(0,255,255,0.9); }
@@ -188,11 +219,67 @@
       -webkit-background-clip:text;
       background-clip:text;
       color:transparent;
-      text-shadow:0 0 30px rgba(0,204,255,0.5);
-      transition:all 0.4s;
+      text-shadow:0 0 25px rgba(0,204,255,0.5);
+      transition: text-shadow 0.4s ease, transform 0.3s ease;
+      will-change: text-shadow, transform;
     }
 
-    .section-title:hover { text-shadow:0 0 50px #ff006e, 0 0 70px #00ccff; }
+    .section-title:hover {
+      text-shadow:0 0 50px #ff006e, 0 0 70px #00ccff, 0 0 100px #00ffff;
+      transform: translateY(-6px);
+    }
+
+    #live .section-title {
+      font-size: clamp(4.2rem, 9vw, 5.2rem);
+      margin-bottom: 3.5rem;
+      letter-spacing: 2px;
+      text-shadow: 0 0 35px rgba(0,204,255,0.7);
+      transition: text-shadow 0.4s ease, transform 0.3s ease;
+      will-change: text-shadow, transform;
+    }
+
+    #live .section-title:hover {
+      text-shadow: 0 0 50px #ff006e, 0 0 70px #00ccff, 0 0 100px #00ffff;
+      transform: translateY(-6px);
+    }
+
+    #live .live-card {
+      background:rgba(10,18,40,0.8);
+      backdrop-filter:blur(18px);
+      border:2.5px solid rgba(0,204,255,0.6);
+      border-radius:28px;
+      padding:3.8rem 2.4rem;
+      max-width:960px;
+      margin:0 auto;
+      box-shadow:0 0 70px rgba(0,204,255,0.4);
+      text-align:center;
+    }
+
+    #live h3 {
+      font-size: clamp(2.2rem, 5.5vw, 2.8rem);
+      margin-bottom: 1.2rem;
+      background: linear-gradient(90deg, #00ffff, #00ccff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 30px rgba(0,255,255,0.6);
+    }
+
+    #live .host {
+      font-size: 1.8rem;
+      color: #a0e0ff;
+      margin-bottom: 1.8rem;
+      opacity: 0.92;
+    }
+
+    #live .description {
+      font-size: 1.45rem;
+      max-width: 720px;
+      margin: 0 auto 2.8rem;
+      line-height: 1.5;
+      color: #d0f0ff;
+      text-shadow: 0 0 10px rgba(0,204,255,0.3);
+    }
 
     .features-grid, .podcasts-grid {
       display:grid;
@@ -202,49 +289,87 @@
 
     .feature-card, .podcast-card {
       background:rgba(12,20,45,0.6);
-      backdrop-filter:blur(16px);
-      border:1.5px solid rgba(0,204,255,0.45);
+      backdrop-filter:blur(14px);
+      border:1.5px solid rgba(0,204,255,0.4);
       border-radius:20px;
-      padding:2.6rem 2rem;
+      padding:2.4rem 1.8rem;
       text-align:center;
-      box-shadow:0 0 30px rgba(0,153,255,0.25), inset 0 0 20px rgba(0,204,255,0.12);
-      transition:all 0.5s;
+      box-shadow:0 0 25px rgba(0,153,255,0.2);
+      transition:all 0.4s;
+      will-change: transform, box-shadow, border-color;
     }
 
     .feature-card:hover, .podcast-card:hover {
-      transform:translateY(-16px);
+      transform:translateY(-14px);
       border-color:#ff006e;
-      box-shadow:0 30px 70px rgba(255,0,110,0.4), inset 0 0 30px rgba(255,0,110,0.15);
+      box-shadow:0 25px 60px rgba(255,0,110,0.35);
     }
 
-    /* Footer */
+    /* Footer – simplified, Quick Links removed */
     .footer {
       padding:6rem 0 4rem;
-      background:rgba(8,12,25,0.98);
-      border-top:2px solid rgba(0,204,255,0.45);
+      background:rgba(8,12,25,0.96);
+      border-top:2px solid rgba(0,204,255,0.4);
+    }
+
+    .footer-brand {
+      text-align: center;
+      margin-bottom: 4rem;
+      transition: text-shadow 0.4s ease, transform 0.3s ease;
+      will-change: text-shadow, transform;
+    }
+
+    .footer-brand h3 {
+      font-size: 3.2rem;
+      background: linear-gradient(90deg, #00ccff, #0099ff, #00ffff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 30px rgba(0,204,255,0.6);
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-brand p {
+      font-size: 1.4rem;
+      color: #a0e0ff;
+      opacity: 0.9;
+    }
+
+    .footer-brand:hover,
+    .footer-brand:hover h3,
+    .footer-brand:hover p {
+      text-shadow: 0 0 50px #ff006e, 0 0 70px #00ccff, 0 0 100px #00ffff;
+      transform: translateY(-6px);
     }
 
     .footer-content {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:3.5rem;
-      margin-bottom:3.5rem;
+      display: flex;
+      justify-content: center;
+      max-width: 500px;
+      margin: 0 auto 3.5rem;
     }
 
-    .footer-section h3, .footer-section h4 { color:#00ccff; margin-bottom:1.4rem; }
+    .footer-section {
+      text-align: center;
+    }
+
+    .footer-section h4 { 
+      color:#00ccff; 
+      margin-bottom:1.4rem; 
+    }
 
     .footer-section a {
       color:#e0f7ff;
       text-decoration:none;
       display:block;
-      margin:0.7rem 0;
+      margin:0.8rem 0;
       transition:all 0.35s;
     }
 
     .footer-section a:hover {
       color:#ff006e;
-      transform:translateX(8px);
-      text-shadow:0 0 12px #ff006e;
+      transform:translateX(6px);
+      text-shadow:0 0 10px #ff006e;
     }
 
     .footer-bottom {
@@ -258,7 +383,8 @@
     @media (max-width:900px) {
       .header-inner { flex-direction:column; align-items:flex-start; gap:1.2rem; padding:0 5vw; }
       nav { width:100%; justify-content:flex-start; }
-      .logo-title { font-size:2.8rem; }
+      .logo-title { font-size:2.8rem; text-align:left; }
+      #live .live-card { padding:3rem 1.8rem; }
     }
 
     @media (max-width:768px) {
@@ -266,6 +392,11 @@
       .section { padding:6rem 0; }
       #play-live { width:100px; height:100px; font-size:2.4rem; }
       .sound-toggle { bottom:4rem; right:1.5rem; width:48px; height:48px; font-size:1.5rem; }
+      #live h3 { font-size: 2.4rem; }
+      #live .host { font-size: 1.6rem; }
+      #live .description { font-size: 1.3rem; }
+      .footer-brand h3 { font-size: 2.6rem; }
+      .footer-brand p { font-size: 1.2rem; }
     }
   </style>
 </head>
@@ -279,7 +410,7 @@
 
   <header class="header">
     <div class="header-inner">
-      <h1 class="logo-title">Wave Radio on Pulse</h1>
+      <h1 class="logo-title">Wave Radio on<br>Pulse</h1>
       <nav>
         <a href="#home" class="nav-link">Home</a>
         <a href="#live" class="nav-link">Live</a>
@@ -316,11 +447,11 @@
     <section class="section" id="live">
       <div class="container">
         <h2 class="section-title">Now Live</h2>
-        <div style="background:rgba(10,18,40,0.75); backdrop-filter:blur(20px); border:2.5px solid rgba(0,204,255,0.55); border-radius:24px; padding:3.5rem; max-width:900px; margin:0 auto; box-shadow:0 0 70px rgba(0,204,255,0.4); text-align:center;">
+        <div class="live-card">
           <h3>Current Show: PulseChain Pioneers</h3>
-          <p>Hosted by CryptoInnovator</p>
-          <p>Live discussion on the latest in decentralized finance and PulseChain developments</p>
-          <button class="play-btn" id="play-live">▶</button>
+          <p class="host">Hosted by CryptoInnovator</p>
+          <p class="description">Live discussion on the latest in decentralized finance and PulseChain developments</p>
+          <button id="play-live">▶</button>
         </div>
       </div>
     </section>
@@ -406,18 +537,12 @@
 
   <footer class="footer">
     <div class="container">
+      <div class="footer-brand">
+        <h3>Wave on Pulse</h3>
+        <p>Decentralized radio for the PulseChain era</p>
+      </div>
+
       <div class="footer-content">
-        <div class="footer-section">
-          <h3>Wave on Pulse</h3>
-          <p>Decentralized radio for the PulseChain era</p>
-        </div>
-        <div class="footer-section">
-          <h4>Quick Links</h4>
-          <a href="#live">Listen Live</a>
-          <a href="#podcasts">Podcasts</a>
-          <a href="#schedule">Schedule</a>
-          <a href="#about">About</a>
-        </div>
         <div class="footer-section">
           <h4>Connect With Us</h4>
           <a href="https://x.com/WaveOnPulse" target="_blank">X / Twitter</a>
@@ -426,6 +551,7 @@
           <a href="#" target="_blank">GitHub</a>
         </div>
       </div>
+
       <div class="footer-bottom">
         © 2025 Wave on Pulse – Built on PulseChain – Decentralized • Uncensorable • Community Owned
       </div>
@@ -450,17 +576,13 @@
         toggle.addEventListener('click', () => {
           video.muted = !video.muted;
           toggle.textContent = video.muted ? '🔇' : '🔊';
-          if (!video.muted && video.paused) {
-            video.play().catch(() => {});
-          }
+          if (!video.muted && video.paused) video.play().catch(() => {});
         });
 
-        const tryPlayVideo = () => {
-          video.play().catch(() => {});
-        };
-        window.addEventListener('load', tryPlayVideo);
-        document.addEventListener('click', tryPlayVideo, {once:true});
-        document.addEventListener('touchstart', tryPlayVideo, {once:true});
+        const tryPlay = () => video.play().catch(() => {});
+        window.addEventListener('load', tryPlay);
+        document.addEventListener('click', tryPlay, {once:true});
+        document.addEventListener('touchstart', tryPlay, {once:true});
       }
 
       // Click sound
@@ -470,7 +592,7 @@
         document.querySelectorAll('.nav-link, .sound-toggle, #play-live').forEach(el => {
           el.addEventListener('click', () => {
             click.currentTime = 0;
-            click.play().catch(()=>{});
+            click.play().catch(() => {});
           });
         });
       }
@@ -481,7 +603,7 @@
       if (liveAudio && playBtn) {
         playBtn.addEventListener('click', () => {
           if (liveAudio.paused) {
-            liveAudio.play().catch(err => console.log('Play blocked:', err));
+            liveAudio.play().catch(() => {});
             playBtn.textContent = '⏸';
           } else {
             liveAudio.pause();
@@ -490,7 +612,7 @@
         });
       }
 
-      // Smooth scroll for nav links
+      // Smooth scroll
       document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', e => {
           e.preventDefault();
