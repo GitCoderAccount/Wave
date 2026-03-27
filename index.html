@@ -5,15 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Wave on Pulse</title>
   <link rel="icon" type="image/x-icon" href="public/WaveLogo.jpg">
-  
-  <!-- Bubblegum Sans from Google Fonts (preload for faster font loading) -->
+ 
+  <!-- Bubblegum Sans from Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap" rel="stylesheet">
 
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
-
     body {
       font-family: 'Bubblegum Sans', cursive, system-ui, sans-serif;
       background:#0a0a0a;
@@ -21,13 +20,12 @@
       line-height:1.6;
       overflow-x:hidden;
     }
-
     h1, h2, h3, h4, p, a, button, .marquee-text, .logo-title, .section-title,
     .nav-link, .footer-section, .footer-bottom, .footer-brand {
       font-family: 'Bubblegum Sans', cursive, system-ui, sans-serif;
     }
 
-    /* Marquee – kept but reduced shadow intensity */
+    /* Marquee */
     .marquee-container {
       position:sticky; top:0; z-index:9999;
       background:linear-gradient(90deg,rgba(0,153,255,0.85),rgba(0,204,255,0.7),rgba(0,255,255,0.55));
@@ -36,7 +34,6 @@
       padding:10px 0;
       backdrop-filter:blur(12px);
     }
-
     .marquee-text {
       font-size:1.28rem;
       letter-spacing:3px;
@@ -46,7 +43,6 @@
       white-space:nowrap;
       animation:marqueeScroll 100s linear infinite;
     }
-
     @keyframes marqueeScroll { 0%{transform:translateX(100%)} 100%{transform:translateX(-100%)} }
 
     /* Header */
@@ -59,7 +55,6 @@
       border-bottom:1px solid rgba(0,204,255,0.35);
       padding:0.8rem 0;
     }
-
     .header-inner {
       display:flex;
       align-items:center;
@@ -69,7 +64,6 @@
       padding:0 5vw;
       gap:3.5rem;
     }
-
     .logo-title {
       font-size: 5.0rem;
       background: linear-gradient(90deg, #0099ff, #00ccff, #00ffff);
@@ -80,30 +74,20 @@
       white-space: normal;
       line-height: 1.05;
       animation: pulse-glow 4s ease-in-out infinite alternate;
-      transition: 
-        background 0.6s ease,
-        text-shadow 0.45s ease,
-        transform 0.35s ease;
-      will-change: background, text-shadow, transform;
+      transition: background 0.6s ease, text-shadow 0.45s ease, transform 0.35s ease;
     }
-
     .logo-title:hover {
       animation-play-state: paused;
       background: linear-gradient(90deg, #ff006e, #ff3399, #ff66cc);
       -webkit-background-clip: text;
       background-clip: text;
-      text-shadow: 
-        0 0 60px #ff006e,
-        0 0 90px #ff3399,
-        0 0 120px #ff66cc;
+      text-shadow: 0 0 60px #ff006e, 0 0 90px #ff3399, 0 0 120px #ff66cc;
       transform: translateY(-6px) scale(1.03);
     }
-
     @keyframes pulse-glow {
       from { text-shadow: 0 0 25px rgba(0,204,255,0.6), 0 0 45px rgba(0,204,255,0.4); }
-      to   { text-shadow: 0 0 45px rgba(0,204,255,0.95), 0 0 75px rgba(0,204,255,0.75), 0 0 110px rgba(0,153,255,0.55); }
+      to { text-shadow: 0 0 45px rgba(0,204,255,0.95), 0 0 75px rgba(0,204,255,0.75), 0 0 110px rgba(0,153,255,0.55); }
     }
-
     nav {
       display:flex;
       align-items:center;
@@ -111,7 +95,6 @@
       flex-wrap:wrap;
       justify-content:flex-end;
     }
-
     .nav-link {
       color:#e0f7ff;
       text-decoration:none;
@@ -122,13 +105,18 @@
       transition:all 0.35s;
       font-size:1.02rem;
     }
-
     .nav-link:hover {
       background:linear-gradient(135deg,rgba(255,0,110,0.25),rgba(236,19,172,0.18));
       border-color:#ff006e;
       color:#ffccdd;
       transform:translateY(-3px);
       box-shadow:0 10px 30px rgba(255,0,110,0.35);
+    }
+    .nav-donate {
+      background:linear-gradient(135deg,#ff006e,#ff3399) !important;
+      border-color:#ff66cc !important;
+      color:#fff !important;
+      font-weight:bold;
     }
 
     /* Hero */
@@ -138,28 +126,24 @@
       min-height: 680px;
       margin-top: -12vh;
     }
-
     .hero-video {
       position:absolute;
       inset:0;
       z-index:-1;
       overflow:hidden;
     }
-
     #hero-video {
       width:100%;
       height:100%;
       object-fit:cover;
       filter: brightness(1.18) saturate(1.22);
     }
-
     .hero-overlay {
       position: absolute;
       inset: 0;
       background: linear-gradient(to bottom, transparent 25%, rgba(0,0,0,0.12) 55%, rgba(0,0,0,0.28) 100%);
       z-index: 1;
     }
-
     .sound-toggle {
       position:absolute;
       bottom:6rem;
@@ -178,15 +162,12 @@
       justify-content:center;
       box-shadow:0 0 20px rgba(0,204,255,0.5);
       transition:all 0.4s;
-      will-change: transform, box-shadow;
     }
-
     .sound-toggle:hover {
       transform:translateY(-4px) scale(1.1);
       box-shadow:0 12px 40px rgba(0,204,255,0.9);
     }
 
-    /* Live play button */
     #play-live {
       width:110px;
       height:110px;
@@ -203,14 +184,11 @@
       box-shadow:0 0 50px rgba(0,204,255,0.7);
       cursor:pointer;
       transition:all 0.35s;
-      will-change: transform, box-shadow;
     }
-
     #play-live:hover { transform:scale(1.15); box-shadow:0 0 70px rgba(0,255,255,0.9); }
 
     /* Sections */
     .section { padding:8rem 0; }
-
     .section-title {
       text-align:center;
       font-size:3.8rem;
@@ -221,28 +199,13 @@
       color:transparent;
       text-shadow:0 0 25px rgba(0,204,255,0.5);
       transition: text-shadow 0.4s ease, transform 0.3s ease;
-      will-change: text-shadow, transform;
     }
-
     .section-title:hover {
       text-shadow:0 0 50px #ff006e, 0 0 70px #00ccff, 0 0 100px #00ffff;
       transform: translateY(-6px);
     }
 
-    #live .section-title {
-      font-size: clamp(4.2rem, 9vw, 5.2rem);
-      margin-bottom: 3.5rem;
-      letter-spacing: 2px;
-      text-shadow: 0 0 35px rgba(0,204,255,0.7);
-      transition: text-shadow 0.4s ease, transform 0.3s ease;
-      will-change: text-shadow, transform;
-    }
-
-    #live .section-title:hover {
-      text-shadow: 0 0 50px #ff006e, 0 0 70px #00ccff, 0 0 100px #00ffff;
-      transform: translateY(-6px);
-    }
-
+    /* Live Card */
     #live .live-card {
       background:rgba(10,18,40,0.8);
       backdrop-filter:blur(18px);
@@ -254,7 +217,6 @@
       box-shadow:0 0 70px rgba(0,204,255,0.4);
       text-align:center;
     }
-
     #live h3 {
       font-size: clamp(2.2rem, 5.5vw, 2.8rem);
       margin-bottom: 1.2rem;
@@ -264,14 +226,12 @@
       color: transparent;
       text-shadow: 0 0 30px rgba(0,255,255,0.6);
     }
-
     #live .host {
       font-size: 1.8rem;
       color: #a0e0ff;
       margin-bottom: 1.8rem;
       opacity: 0.92;
     }
-
     #live .description {
       font-size: 1.45rem;
       max-width: 720px;
@@ -281,12 +241,12 @@
       text-shadow: 0 0 10px rgba(0,204,255,0.3);
     }
 
+    /* Features & Podcasts Cards */
     .features-grid, .podcasts-grid {
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
       gap:2.5rem;
     }
-
     .feature-card, .podcast-card {
       background:rgba(12,20,45,0.6);
       backdrop-filter:blur(14px);
@@ -298,27 +258,78 @@
       transition:all 0.4s;
       will-change: transform, box-shadow, border-color;
     }
-
     .feature-card:hover, .podcast-card:hover {
       transform:translateY(-14px);
       border-color:#ff006e;
       box-shadow:0 25px 60px rgba(255,0,110,0.35);
     }
 
-    /* Footer – simplified, Quick Links removed */
+    /* Donation Section */
+    .donation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 2.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .crypto-box, .fiat-box {
+      background: rgba(12,20,45,0.75);
+      backdrop-filter: blur(16px);
+      border-radius: 24px;
+      padding: 2.8rem 2.2rem;
+      text-align: center;
+      border: 2px solid;
+      transition: all 0.4s;
+    }
+    .crypto-box { border-color: #00ccff; }
+    .fiat-box { border-color: #ff006e; }
+    .crypto-box:hover, .fiat-box:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 30px 70px rgba(0,204,255,0.4);
+    }
+    .coin-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0,204,255,0.08);
+      padding: 1rem 1.2rem;
+      border-radius: 12px;
+      margin: 1rem 0;
+    }
+    .coin-row button {
+      background: #00ccff;
+      color: #000;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 50px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .coin-row button:hover {
+      background: #00ffff;
+      transform: scale(1.05);
+    }
+    .qr-code {
+      width: 220px;
+      height: 220px;
+      border: 5px solid #00ccff;
+      border-radius: 16px;
+      box-shadow: 0 0 40px rgba(0,204,255,0.6);
+      margin: 1.5rem auto;
+    }
+
+    /* Footer */
     .footer {
       padding:6rem 0 4rem;
       background:rgba(8,12,25,0.96);
       border-top:2px solid rgba(0,204,255,0.4);
     }
-
     .footer-brand {
       text-align: center;
       margin-bottom: 4rem;
       transition: text-shadow 0.4s ease, transform 0.3s ease;
-      will-change: text-shadow, transform;
     }
-
     .footer-brand h3 {
       font-size: 3.2rem;
       background: linear-gradient(90deg, #00ccff, #0099ff, #00ffff);
@@ -328,36 +339,17 @@
       text-shadow: 0 0 30px rgba(0,204,255,0.6);
       margin-bottom: 0.6rem;
     }
-
     .footer-brand p {
       font-size: 1.4rem;
       color: #a0e0ff;
       opacity: 0.9;
     }
-
-    .footer-brand:hover,
-    .footer-brand:hover h3,
-    .footer-brand:hover p {
-      text-shadow: 0 0 50px #ff006e, 0 0 70px #00ccff, 0 0 100px #00ffff;
-      transform: translateY(-6px);
-    }
-
     .footer-content {
       display: flex;
       justify-content: center;
       max-width: 500px;
       margin: 0 auto 3.5rem;
     }
-
-    .footer-section {
-      text-align: center;
-    }
-
-    .footer-section h4 { 
-      color:#00ccff; 
-      margin-bottom:1.4rem; 
-    }
-
     .footer-section a {
       color:#e0f7ff;
       text-decoration:none;
@@ -365,13 +357,11 @@
       margin:0.8rem 0;
       transition:all 0.35s;
     }
-
     .footer-section a:hover {
       color:#ff006e;
       transform:translateX(6px);
       text-shadow:0 0 10px #ff006e;
     }
-
     .footer-bottom {
       text-align:center;
       padding-top:2rem;
@@ -384,19 +374,13 @@
       .header-inner { flex-direction:column; align-items:flex-start; gap:1.2rem; padding:0 5vw; }
       nav { width:100%; justify-content:flex-start; }
       .logo-title { font-size:2.8rem; text-align:left; }
-      #live .live-card { padding:3rem 1.8rem; }
     }
-
     @media (max-width:768px) {
       .hero { height: calc(100vh - 100px); margin-top: -8vh; }
       .section { padding:6rem 0; }
       #play-live { width:100px; height:100px; font-size:2.4rem; }
       .sound-toggle { bottom:4rem; right:1.5rem; width:48px; height:48px; font-size:1.5rem; }
-      #live h3 { font-size: 2.4rem; }
-      #live .host { font-size: 1.6rem; }
-      #live .description { font-size: 1.3rem; }
-      .footer-brand h3 { font-size: 2.6rem; }
-      .footer-brand p { font-size: 1.2rem; }
+      .donation-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -404,7 +388,7 @@
 
   <div class="marquee-container">
     <div class="marquee-text">
-      WAVE ON PULSE • Decentralized Radio • 24/7 Uncensorable Broadcasting • Built on PulseChain • No Central Authority • Free Speech • Crypto Community • Blockchain Audio • Digital Freedom • Peer-to-Peer • Open Source • Community Driven • Trustless • Permissionless • Sovereign • Resilient • Borderless • Global Reach • Web3 Radio • PulseChain Ecosystem • Audio Liberation • WAVE ON PULSE • 
+      WAVE ON PULSE • Decentralized Radio • 24/7 Uncensorable Broadcasting • Built on PulseChain • No Central Authority • Free Speech • Crypto Community • Blockchain Audio • Digital Freedom • Peer-to-Peer • Open Source • Community Driven • Trustless • Permissionless • Sovereign • Resilient • Borderless • Global Reach • Web3 Radio • PulseChain Ecosystem • Audio Liberation • WAVE ON PULSE •
     </div>
   </div>
 
@@ -417,6 +401,7 @@
         <a href="#podcasts" class="nav-link">Podcasts</a>
         <a href="#schedule" class="nav-link">Schedule</a>
         <a href="#about" class="nav-link">About</a>
+        <a href="#donate" class="nav-link nav-donate">💰 Donate</a>
       </nav>
     </div>
   </header>
@@ -533,6 +518,56 @@
         </div>
       </div>
     </section>
+
+    <!-- DONATE SECTION – Consolidated -->
+    <section class="section" id="donate" style="background: linear-gradient(180deg, #0a0a0a, #121a35);">
+      <div class="container">
+        <h2 class="section-title">Support the Wave</h2>
+        <p style="max-width:860px; margin:0 auto 3.5rem; font-size:1.32rem; text-align:center; opacity:0.94;">
+          Help keep Wave on Pulse broadcasting freely on PulseChain.<br>
+          Every donation powers uncensorable radio for the decentralized community.
+        </p>
+
+        <div class="donation-grid">
+          <div class="crypto-box">
+            <h3 style="color:#00ffff; font-size:2.1rem; margin-bottom:1.8rem;">💎 Crypto Donations</h3>
+            
+            <div class="coin-row">
+              <div style="text-align:left;">
+                <strong>EVM Compatible</strong><br>
+                <span style="font-size:0.95rem; opacity:0.8;">(PLS • ETH • USDC • DAI • USDT)</span><br>
+                <span id="evm-addr" style="font-family:monospace; font-size:1.05rem; word-break:break-all;">0xYOUR_EVM_ADDRESS_HERE</span>
+              </div>
+              <button onclick="copyAddress('evm-addr')">COPY</button>
+            </div>
+
+            <div class="coin-row">
+              <div style="text-align:left;">
+                <strong>Bitcoin (BTC)</strong><br>
+                <span id="btc-addr" style="font-family:monospace; font-size:1.05rem; word-break:break-all;">YOUR_BTC_ADDRESS_HERE</span>
+              </div>
+              <button onclick="copyAddress('btc-addr')">COPY</button>
+            </div>
+
+            <p style="margin-top:2rem; opacity:0.85;">Scan QR for fast send (EVM recommended)</p>
+            <img src="assets/qr-pls.png" alt="EVM QR" class="qr-code">
+          </div>
+
+          <div class="fiat-box">
+            <h3 style="color:#ff66cc; font-size:2.1rem; margin-bottom:1.8rem;">💵 Fiat / Traditional</h3>
+            <p style="font-size:1.4rem; margin:2rem 0;">Support via popular payment apps</p>
+            
+            <a href="https://www.paypal.me/YOURPAYPALUSERNAME" target="_blank" style="display:block; background:linear-gradient(135deg,#ff006e,#ff3399); color:#fff; padding:18px 40px; border-radius:50px; font-size:1.35rem; text-decoration:none; margin:1.2rem auto; max-width:320px; box-shadow:0 0 35px rgba(255,0,110,0.6);">Donate with PayPal</a>
+            <a href="https://cash.app/$YOURCASHAPP" target="_blank" style="display:block; background:#00d632; color:#000; padding:18px 40px; border-radius:50px; font-size:1.35rem; text-decoration:none; margin:1.2rem auto; max-width:320px; box-shadow:0 0 30px rgba(0,214,50,0.5);">Donate with Cash App</a>
+            <a href="https://venmo.com/YOURVENMO" target="_blank" style="display:block; background:#3d95ce; color:#fff; padding:18px 40px; border-radius:50px; font-size:1.35rem; text-decoration:none; margin:1.2rem auto; max-width:320px; box-shadow:0 0 30px rgba(61,149,206,0.6);">Donate with Venmo</a>
+
+            <p style="margin-top:2.5rem; font-size:1.05rem; opacity:0.8;">
+              Prefer another method? DM us on <a href="https://x.com/WaveOnPulse" target="_blank" style="color:#00ccff;">X @WaveOnPulse</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
@@ -541,7 +576,6 @@
         <h3>Wave on Pulse</h3>
         <p>Decentralized radio for the PulseChain era</p>
       </div>
-
       <div class="footer-content">
         <div class="footer-section">
           <h4>Connect With Us</h4>
@@ -551,7 +585,6 @@
           <a href="#" target="_blank">GitHub</a>
         </div>
       </div>
-
       <div class="footer-bottom">
         © 2025 Wave on Pulse – Built on PulseChain – Decentralized • Uncensorable • Community Owned
       </div>
@@ -566,19 +599,17 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
 
-      // Video + sound toggle
+      // Video sound toggle
       const video = document.getElementById('hero-video');
       const toggle = document.getElementById('video-sound-toggle');
       if (video && toggle) {
         video.muted = true;
         toggle.textContent = '🔇';
-
         toggle.addEventListener('click', () => {
           video.muted = !video.muted;
           toggle.textContent = video.muted ? '🔇' : '🔊';
           if (!video.muted && video.paused) video.play().catch(() => {});
         });
-
         const tryPlay = () => video.play().catch(() => {});
         window.addEventListener('load', tryPlay);
         document.addEventListener('click', tryPlay, {once:true});
@@ -619,6 +650,24 @@
           document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});
         });
       });
+
+      // Copy address function
+      window.copyAddress = function(id) {
+        const el = document.getElementById(id);
+        const address = el.textContent.trim();
+        navigator.clipboard.writeText(address).then(() => {
+          const btn = el.parentElement.parentElement.querySelector('button');
+          const originalText = btn.textContent;
+          btn.textContent = '✅ COPIED!';
+          btn.style.background = '#00ff88';
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.style.background = '#00ccff';
+          }, 2000);
+        }).catch(() => {
+          alert('Failed to copy. Please copy manually: ' + address);
+        });
+      };
     });
   </script>
 </body>
