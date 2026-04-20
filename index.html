@@ -427,7 +427,7 @@
       opacity: 0.85;
       font-size: 0.98rem;
     }
-    /* ====================== PULSECHAIN LOGO (now at very bottom) ====================== */
+    /* ====================== PULSECHAIN LOGO (very bottom) ====================== */
     .bottom-pulsechain {
       text-align: center;
       padding: 4rem 5vw 3rem;
@@ -541,7 +541,7 @@
       WAVE ON PULSE • Decentralized Radio • 24/7 Uncensorable Broadcasting • Built on PulseChain • No Central Authority • Free Speech • Crypto Community • Blockchain Audio • Digital Freedom • Peer-to-Peer • Open Source • Community Driven • Trustless • Permissionless • Sovereign • Resilient • Borderless • Global Reach • Web3 Radio • PulseChain Ecosystem • Audio Liberation • WAVE ON PULSE •
     </div>
   </div>
-  <!-- Header (no logo here anymore) -->
+  <!-- Header -->
   <header class="header">
     <div class="header-inner">
       <h1 class="logo-title">Wave on Pulse<br>Radio</h1>
@@ -711,7 +711,7 @@
       </div>
     </section>
   </main>
-  <!-- Footer -->
+  <!-- Footer (Discord link removed) -->
   <footer class="footer">
     <div class="container">
       <div class="footer-brand">
@@ -732,10 +732,12 @@
     </div>
   </footer>
 
-  <!-- PulseChain Logo — now the VERY LAST thing on the page -->
+  <!-- PulseChain Logo + updated copyright line (very last thing on the page) -->
   <div class="bottom-pulsechain">
     <img src="public/pulsechain-logo.png" alt="PulseChain" class="pulsechain-logo">
-    <p style="margin-top: 1.2rem; font-size: 1.25rem; opacity: 0.85; letter-spacing: 2px;">PROUDLY BUILT ON PULSECHAIN</p>
+    <p style="margin-top: 1.5rem; font-size: 1.25rem; opacity: 0.9; letter-spacing: 2px;">
+      © 2025 Wave on Pulse – Built on PulseChain – Decentralized • Uncensorable • Community Owned
+    </p>
   </div>
 
   <!-- NOW PLAYING BAR -->
@@ -750,14 +752,13 @@
     </div>
   </div>
 
-  <!-- Audio elements -->
+  <!-- Audio elements (hero-audio removed – video now handles its own audio) -->
   <audio id="click-sound" src="public/click.mp3" preload="auto"></audio>
-  <audio id="hero-audio" src="public/hero_audio.aac" preload="auto" loop></audio>
   <audio id="live-stream" src="YOUR_ACTUAL_LIVE_STREAM_URL.mp3" preload="auto" loop></audio>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Video sound toggle
+      // Video sound toggle (now directly controls the video's built-in audio)
       const video = document.getElementById('hero-video');
       const toggle = document.getElementById('video-sound-toggle');
       if (video && toggle) {
@@ -784,7 +785,7 @@
           });
         });
       }
-      // Live stream play/pause (original) + Now Playing bar sync
+      // Live stream play/pause + Now Playing bar sync
       const liveAudio = document.getElementById('live-stream');
       const playBtn = document.getElementById('play-live');
       const npBar = document.getElementById('now-playing');
