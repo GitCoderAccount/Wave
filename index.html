@@ -69,19 +69,6 @@
       padding: 0 5vw;
       gap: 3.5rem;
     }
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .pulsechain-logo {
-      height: 68px;
-      filter: drop-shadow(0 0 18px #00ccff);
-      transition: transform 0.3s ease;
-    }
-    .pulsechain-logo:hover {
-      transform: scale(1.08);
-    }
     .logo-title {
       font-size: 5.0rem;
       background: linear-gradient(90deg, #0099ff, #00ccff, #00ffff);
@@ -440,6 +427,21 @@
       opacity: 0.85;
       font-size: 0.98rem;
     }
+    /* ====================== PULSECHAIN LOGO (now at very bottom) ====================== */
+    .bottom-pulsechain {
+      text-align: center;
+      padding: 4rem 5vw 3rem;
+      background: rgba(10,15,35,0.6);
+      border-top: 1px solid rgba(0,204,255,0.3);
+    }
+    .pulsechain-logo {
+      height: 90px;
+      filter: drop-shadow(0 0 20px #00ccff);
+      transition: transform 0.4s ease;
+    }
+    .pulsechain-logo:hover {
+      transform: scale(1.1);
+    }
     /* ====================== NOW PLAYING BAR ====================== */
     #now-playing {
       position: fixed;
@@ -511,7 +513,7 @@
       #play-live { width: 100px; height: 100px; font-size: 2.4rem; }
       .sound-toggle { bottom: 4rem; right: 1.5rem; width: 48px; height: 48px; font-size: 1.5rem; }
       .donation-grid { grid-template-columns: 1fr; }
-      .pulsechain-logo { height: 52px; }
+      .pulsechain-logo { height: 72px; }
     }
     @media (max-width: 640px) {
       .schedule-header,
@@ -539,13 +541,9 @@
       WAVE ON PULSE • Decentralized Radio • 24/7 Uncensorable Broadcasting • Built on PulseChain • No Central Authority • Free Speech • Crypto Community • Blockchain Audio • Digital Freedom • Peer-to-Peer • Open Source • Community Driven • Trustless • Permissionless • Sovereign • Resilient • Borderless • Global Reach • Web3 Radio • PulseChain Ecosystem • Audio Liberation • WAVE ON PULSE •
     </div>
   </div>
-  <!-- Header with PulseChain logo -->
+  <!-- Header (no logo here anymore) -->
   <header class="header">
     <div class="header-inner">
-      <div class="logo-container">
-        <!-- Your own PulseChain PNG (drop your file in public/pulsechain-logo.png) -->
-        <img src="public/pulsechain-logo.png" alt="PulseChain" class="pulsechain-logo">
-      </div>
       <h1 class="logo-title">Wave on Pulse<br>Radio</h1>
      
       <!-- Hamburger -->
@@ -734,6 +732,12 @@
     </div>
   </footer>
 
+  <!-- PulseChain Logo — now the VERY LAST thing on the page -->
+  <div class="bottom-pulsechain">
+    <img src="public/pulsechain-logo.png" alt="PulseChain" class="pulsechain-logo">
+    <p style="margin-top: 1.2rem; font-size: 1.25rem; opacity: 0.85; letter-spacing: 2px;">PROUDLY BUILT ON PULSECHAIN</p>
+  </div>
+
   <!-- NOW PLAYING BAR -->
   <div id="now-playing" class="hidden">
     <div class="now-playing-left">
@@ -780,10 +784,9 @@
           });
         });
       }
-      // Live stream play/pause (original)
+      // Live stream play/pause (original) + Now Playing bar sync
       const liveAudio = document.getElementById('live-stream');
       const playBtn = document.getElementById('play-live');
-      // Now Playing bar
       const npBar = document.getElementById('now-playing');
       const npTitle = document.getElementById('np-title');
       const npBtn = document.getElementById('np-play-btn');
