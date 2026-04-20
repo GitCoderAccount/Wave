@@ -27,7 +27,6 @@
     .nav-link, .footer-section, .footer-bottom, .footer-brand {
       font-family: 'Bubblegum Sans', cursive, system-ui, sans-serif;
     }
-
     /* ====================== MARQUEE ====================== */
     .marquee-container {
       position: sticky;
@@ -51,7 +50,6 @@
       animation: marqueeScroll 100s linear infinite;
     }
     @keyframes marqueeScroll { 0%{transform:translateX(100%)} 100%{transform:translateX(-100%)} }
-
     /* ====================== HEADER ====================== */
     .header {
       position: sticky;
@@ -70,6 +68,19 @@
       margin: 0 auto;
       padding: 0 5vw;
       gap: 3.5rem;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .pulsechain-logo {
+      height: 68px;
+      filter: drop-shadow(0 0 18px #00ccff);
+      transition: transform 0.3s ease;
+    }
+    .pulsechain-logo:hover {
+      transform: scale(1.08);
     }
     .logo-title {
       font-size: 5.0rem;
@@ -96,7 +107,6 @@
       from { text-shadow: 0 0 25px rgba(0,204,255,0.6), 0 0 45px rgba(0,204,255,0.4); }
       to { text-shadow: 0 0 45px rgba(0,204,255,0.95), 0 0 75px rgba(0,204,255,0.75), 0 0 110px rgba(0,153,255,0.55); }
     }
-
     /* Hamburger */
     .hamburger {
       display: none;
@@ -111,7 +121,6 @@
       align-items: center;
       justify-content: center;
     }
-
     nav {
       display: flex;
       align-items: center;
@@ -145,7 +154,6 @@
       color: #fff !important;
       font-weight: bold;
     }
-
     /* Mobile Menu */
     .mobile-menu {
       display: none;
@@ -172,14 +180,12 @@
       text-align: center;
       border: 1px solid rgba(0,204,255,0.35);
     }
-
     /* ====================== CONTAINER ====================== */
     .container {
       max-width: 1400px;
       margin: 0 auto;
       padding: 0 5vw;
     }
-
     /* ====================== HERO ====================== */
     .hero {
       position: relative;
@@ -228,7 +234,6 @@
       transform: translateY(-4px) scale(1.1);
       box-shadow: 0 12px 40px rgba(0,204,255,0.9);
     }
-
     /* ====================== SECTIONS ====================== */
     .section { padding: 8rem 0; }
     .section-title {
@@ -246,7 +251,6 @@
       text-shadow: 0 0 50px #ff006e, 0 0 70px #00ccff, 0 0 100px #00ffff;
       transform: translateY(-6px);
     }
-
     /* Live Card */
     #live .live-card {
       background: rgba(10,18,40,0.8);
@@ -268,7 +272,6 @@
       color: transparent;
       text-shadow: 0 0 30px rgba(0,255,255,0.6);
     }
-
     /* Features & Podcasts */
     .features-grid, .podcasts-grid {
       display: grid;
@@ -311,7 +314,6 @@
       height: 100%;
       object-fit: cover;
     }
-
     /* Donation */
     .donation-grid {
       display: grid;
@@ -367,7 +369,6 @@
       box-shadow: 0 0 40px rgba(0,204,255,0.6);
       margin: 1.5rem auto;
     }
-
     /* Schedule */
     .schedule-table {
       background: rgba(12,20,45,0.6);
@@ -394,7 +395,6 @@
     .schedule-row:last-child {
       border-bottom: none;
     }
-
     /* Footer */
     .footer {
       padding: 6rem 0 4rem;
@@ -440,7 +440,64 @@
       opacity: 0.85;
       font-size: 0.98rem;
     }
-
+    /* ====================== NOW PLAYING BAR ====================== */
+    #now-playing {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 99999;
+      background: rgba(8,12,25,0.95);
+      backdrop-filter: blur(20px);
+      border-top: 2px solid #00ccff;
+      padding: 12px 5vw;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 -4px 30px rgba(0,204,255,0.4);
+      transition: transform 0.4s ease;
+    }
+    #now-playing.hidden {
+      transform: translateY(100%);
+    }
+    .now-playing-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+    }
+    .live-dot {
+      width: 12px;
+      height: 12px;
+      background: #ff006e;
+      border-radius: 50%;
+      box-shadow: 0 0 12px #ff006e;
+      animation: pulse-live 1.5s infinite;
+    }
+    .now-playing-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .now-playing-controls button {
+      background: linear-gradient(135deg, #00ccff, #00ffff);
+      border: none;
+      color: #000;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 1.6rem;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(0,204,255,0.7);
+      transition: all 0.3s;
+    }
+    .now-playing-controls button:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 30px rgba(0,255,255,0.9);
+    }
+    @keyframes pulse-live { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
     /* ====================== RESPONSIVE ====================== */
     @media (max-width: 900px) {
       .header-inner { justify-content: space-between; }
@@ -450,13 +507,12 @@
       .hero { height: calc(100vh - 100px); margin-top: -8vh; }
       .section { padding: 6rem 0; }
     }
-
     @media (max-width: 768px) {
       #play-live { width: 100px; height: 100px; font-size: 2.4rem; }
       .sound-toggle { bottom: 4rem; right: 1.5rem; width: 48px; height: 48px; font-size: 1.5rem; }
       .donation-grid { grid-template-columns: 1fr; }
+      .pulsechain-logo { height: 52px; }
     }
-
     @media (max-width: 640px) {
       .schedule-header,
       .schedule-row {
@@ -467,7 +523,6 @@
         grid-column: span 2;
       }
     }
-
     /* Backdrop-filter fallback for older browsers */
     @supports not (backdrop-filter: blur(18px)) {
       .header, .marquee-container, .mobile-menu, .live-card, .feature-card, .podcast-card,
@@ -484,15 +539,18 @@
       WAVE ON PULSE • Decentralized Radio • 24/7 Uncensorable Broadcasting • Built on PulseChain • No Central Authority • Free Speech • Crypto Community • Blockchain Audio • Digital Freedom • Peer-to-Peer • Open Source • Community Driven • Trustless • Permissionless • Sovereign • Resilient • Borderless • Global Reach • Web3 Radio • PulseChain Ecosystem • Audio Liberation • WAVE ON PULSE •
     </div>
   </div>
-
-  <!-- Header -->
+  <!-- Header with PulseChain logo -->
   <header class="header">
     <div class="header-inner">
+      <div class="logo-container">
+        <!-- Your own PulseChain PNG (drop your file in public/pulsechain-logo.png) -->
+        <img src="public/pulsechain-logo.png" alt="PulseChain" class="pulsechain-logo">
+      </div>
       <h1 class="logo-title">Wave on Pulse<br>Radio</h1>
-      
+     
       <!-- Hamburger -->
       <button id="hamburger" class="hamburger" aria-label="Menu">☰</button>
-      
+     
       <!-- Desktop Nav -->
       <nav>
         <a href="#home" class="nav-link">Home</a>
@@ -504,7 +562,6 @@
       </nav>
     </div>
   </header>
-
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="mobile-menu">
     <a href="#home" class="nav-link">Home</a>
@@ -514,19 +571,17 @@
     <a href="#about" class="nav-link">About</a>
     <a href="#donate" class="nav-link nav-donate">💰 Donate</a>
   </div>
-
   <main>
     <!-- Hero -->
     <section class="hero" id="home">
       <div class="hero-video">
-        <video id="hero-video" autoplay loop muted playsinline preload="metadata">
+        <video id="hero-video" autoplay loop muted playsinline preload="metadata" poster="public/hero-poster.jpg">
           <source src="public/Radio_Dial_Frequency_Pattern_Video (1).mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
         <button class="sound-toggle" id="video-sound-toggle" title="Toggle video sound">🔇</button>
       </div>
     </section>
-
     <!-- Features -->
     <section class="section" id="features">
       <div class="container">
@@ -539,7 +594,6 @@
         </div>
       </div>
     </section>
-
     <!-- Live -->
     <section class="section" id="live">
       <div class="container">
@@ -552,31 +606,29 @@
         </div>
       </div>
     </section>
-
     <!-- Podcasts -->
     <section class="section" id="podcasts">
       <div class="container">
         <h2 class="section-title">Featured Podcasts</h2>
         <div class="podcasts-grid">
           <div class="podcast-card">
-            <div class="podcast-thumbnail"><img src="assets/podcast1.jpg" alt=""></div>
+            <div class="podcast-thumbnail"><img src="assets/podcast1.jpg" alt="" loading="lazy"></div>
             <h3>DeFi Deep Dive</h3>
             <p>Weekly analysis of decentralized finance protocols</p>
           </div>
           <div class="podcast-card">
-            <div class="podcast-thumbnail"><img src="assets/podcast2.jpg" alt=""></div>
+            <div class="podcast-thumbnail"><img src="assets/podcast2.jpg" alt="" loading="lazy"></div>
             <h3>PulseChain News</h3>
             <p>Daily updates on PulseChain ecosystem</p>
           </div>
           <div class="podcast-card">
-            <div class="podcast-thumbnail"><img src="assets/podcast3.jpg" alt=""></div>
+            <div class="podcast-thumbnail"><img src="assets/podcast3.jpg" alt="" loading="lazy"></div>
             <h3>Blockchain Builders</h3>
             <p>Interviews with blockchain developers</p>
           </div>
         </div>
       </div>
     </section>
-
     <!-- Schedule -->
     <section class="section" id="schedule">
       <div class="container">
@@ -595,7 +647,6 @@
         </div>
       </div>
     </section>
-
     <!-- About -->
     <section class="section" id="about">
       <div class="container">
@@ -619,7 +670,6 @@
         </div>
       </div>
     </section>
-
     <!-- Donate -->
     <section class="section" id="donate" style="background: linear-gradient(180deg, #0a0a0a, #121a35);">
       <div class="container">
@@ -663,7 +713,6 @@
       </div>
     </section>
   </main>
-
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
@@ -684,6 +733,18 @@
       </div>
     </div>
   </footer>
+
+  <!-- NOW PLAYING BAR -->
+  <div id="now-playing" class="hidden">
+    <div class="now-playing-left">
+      <div class="live-dot"></div>
+      <span style="font-size:0.95rem; opacity:0.9;">NOW PLAYING</span>
+      <div id="np-title" class="now-playing-title">PulseChain Pioneers</div>
+    </div>
+    <div class="now-playing-controls">
+      <button id="np-play-btn">▶</button>
+    </div>
+  </div>
 
   <!-- Audio elements -->
   <audio id="click-sound" src="public/click.mp3" preload="auto"></audio>
@@ -708,7 +769,6 @@
         document.addEventListener('click', tryPlay, {once:true});
         document.addEventListener('touchstart', tryPlay, {once:true});
       }
-
       // Click sound
       const click = document.getElementById('click-sound');
       if (click) {
@@ -720,22 +780,30 @@
           });
         });
       }
-
-      // Live stream play/pause
+      // Live stream play/pause (original)
       const liveAudio = document.getElementById('live-stream');
       const playBtn = document.getElementById('play-live');
-      if (liveAudio && playBtn) {
-        playBtn.addEventListener('click', () => {
-          if (liveAudio.paused) {
-            liveAudio.play().catch(() => {});
-            playBtn.textContent = '⏸';
-          } else {
-            liveAudio.pause();
-            playBtn.textContent = '▶';
-          }
-        });
+      // Now Playing bar
+      const npBar = document.getElementById('now-playing');
+      const npTitle = document.getElementById('np-title');
+      const npBtn = document.getElementById('np-play-btn');
+      function toggleLiveStream() {
+        if (liveAudio.paused) {
+          liveAudio.play().catch(() => {});
+          playBtn.textContent = '⏸';
+          npBtn.textContent = '⏸';
+          npBar.classList.remove('hidden');
+          npTitle.textContent = document.querySelector('#live h3').textContent || "Live on PulseChain";
+        } else {
+          liveAudio.pause();
+          playBtn.textContent = '▶';
+          npBtn.textContent = '▶';
+        }
       }
-
+      if (liveAudio && playBtn) {
+        playBtn.addEventListener('click', toggleLiveStream);
+        npBtn.addEventListener('click', toggleLiveStream);
+      }
       // Smooth scroll
       document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', e => {
@@ -743,7 +811,6 @@
           document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});
         });
       });
-
       // Copy address
       window.copyAddress = function(id) {
         const el = document.getElementById(id);
@@ -761,7 +828,6 @@
           alert('Failed to copy. Please copy manually: ' + address);
         });
       };
-
       // Hamburger + Mobile Menu
       const hamburger = document.getElementById('hamburger');
       const mobileMenu = document.getElementById('mobile-menu');
@@ -770,7 +836,6 @@
           const isOpen = mobileMenu.classList.toggle('active');
           hamburger.textContent = isOpen ? '✕' : '☰';
         });
-
         // Close mobile menu when a link is clicked
         mobileMenu.querySelectorAll('a').forEach(link => {
           link.addEventListener('click', () => {
