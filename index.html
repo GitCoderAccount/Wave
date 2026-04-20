@@ -382,7 +382,7 @@
     .schedule-row:last-child {
       border-bottom: none;
     }
-    /* Footer */
+    /* Footer (copyright removed - now only at very bottom) */
     .footer {
       padding: 6rem 0 4rem;
       background: rgba(8,12,25,0.96);
@@ -420,14 +420,7 @@
       transform: translateX(6px);
       text-shadow: 0 0 10px #ff006e;
     }
-    .footer-bottom {
-      text-align: center;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(0,204,255,0.25);
-      opacity: 0.85;
-      font-size: 0.98rem;
-    }
-    /* ====================== PULSECHAIN LOGO (very bottom) ====================== */
+    /* ====================== PULSECHAIN LOGO + COPYRIGHT (very last thing) ====================== */
     .bottom-pulsechain {
       text-align: center;
       padding: 4rem 5vw 3rem;
@@ -711,7 +704,7 @@
       </div>
     </section>
   </main>
-  <!-- Footer (Discord link removed) -->
+  <!-- Footer (Discord already removed, copyright removed here) -->
   <footer class="footer">
     <div class="container">
       <div class="footer-brand">
@@ -726,13 +719,10 @@
           <a href="#" target="_blank">GitHub</a>
         </div>
       </div>
-      <div class="footer-bottom">
-        © 2025 Wave on Pulse – Built on PulseChain – Decentralized • Uncensorable • Community Owned
-      </div>
     </div>
   </footer>
 
-  <!-- PulseChain Logo + updated copyright line (very last thing on the page) -->
+  <!-- PulseChain Logo + final copyright line (very last thing on the page) -->
   <div class="bottom-pulsechain">
     <img src="public/pulsechain-logo.png" alt="PulseChain" class="pulsechain-logo">
     <p style="margin-top: 1.5rem; font-size: 1.25rem; opacity: 0.9; letter-spacing: 2px;">
@@ -752,13 +742,13 @@
     </div>
   </div>
 
-  <!-- Audio elements (hero-audio removed – video now handles its own audio) -->
+  <!-- Audio elements -->
   <audio id="click-sound" src="public/click.mp3" preload="auto"></audio>
   <audio id="live-stream" src="YOUR_ACTUAL_LIVE_STREAM_URL.mp3" preload="auto" loop></audio>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Video sound toggle (now directly controls the video's built-in audio)
+      // Video sound toggle (uses the MP4's built-in audio track - no separate file needed)
       const video = document.getElementById('hero-video');
       const toggle = document.getElementById('video-sound-toggle');
       if (video && toggle) {
@@ -840,7 +830,6 @@
           const isOpen = mobileMenu.classList.toggle('active');
           hamburger.textContent = isOpen ? '✕' : '☰';
         });
-        // Close mobile menu when a link is clicked
         mobileMenu.querySelectorAll('a').forEach(link => {
           link.addEventListener('click', () => {
             mobileMenu.classList.remove('active');
