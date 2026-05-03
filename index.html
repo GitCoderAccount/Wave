@@ -7,6 +7,17 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#0a0a0a">
   <meta name="description" content="Wave on Pulse - Live Free Speech Radio permanently archived on PulseChain using Pulse Underground.">
+  <!-- Open Graph / social preview -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://waveonpulse.com">
+  <meta property="og:title"       content="Wave on Pulse — Live Free Speech Radio on PulseChain">
+  <meta property="og:description" content="Live unfiltered radio permanently engraved on the PulseChain blockchain. Uncensorable. Forever.">
+  <meta property="og:image"       content="https://waveonpulse.com/public/hero-poster.jpg">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:site"       content="@WaveOnPulse">
+  <meta name="twitter:title"      content="Wave on Pulse — Live Free Speech Radio on PulseChain">
+  <meta name="twitter:description" content="Live unfiltered radio permanently engraved on the PulseChain blockchain.">
+  <meta name="twitter:image"      content="https://waveonpulse.com/public/hero-poster.jpg">
 
   <!-- Open Graph / Social sharing -->
   <meta property="og:type"        content="website">
@@ -21,8 +32,10 @@
   <meta name="twitter:image"      content="https://waveonpulse.com/public/hero-poster.jpg">
 
   <title>Wave on Pulse</title>
+  <meta name="theme-color" content="#080c19">
   <link rel="icon" type="image/x-icon" href="public/WaveLogo.jpg">
 
+  <link rel="preload" as="image" href="public/hero-poster.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap" rel="stylesheet">
@@ -33,10 +46,8 @@
       --neon-cyan:    #00ccff;
       --neon-pink:    #ff006e;
       --marquee-h:    52px;
-      --header-row-h: 66px;   /* logo + nav row */
-      --tagline-h:    28px;   /* tagline strip */
-      --header-h:     94px;   /* header-row + tagline combined */
-      --bars-h:       146px;  /* marquee + full header */
+      --header-h:     76px;   /* slightly taller to breathe with bigger logo */
+      --bars-h:       128px;  /* marquee + header */
       --np-h:         70px;
       --safe-bottom:  env(safe-area-inset-bottom, 0px);
     }
@@ -105,7 +116,7 @@
     .header {
       position: sticky;
       top: var(--marquee-h);
-      z-index: 900;
+      z-index: 10000;  /* above marquee's 9999 so animated logo letters don't go behind it */
       background: rgba(8,12,25,0.94);
       backdrop-filter: blur(18px);
       border-bottom: 1px solid rgba(0,204,255,0.3);
@@ -115,36 +126,11 @@
       width: 100%;
       margin: 0 auto;
       padding: 0 5vw;
-      height: var(--header-row-h);
+      height: var(--header-h);
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1.5rem;
-    }
-
-    /* ── Tagline strip — right below nav buttons, above the hero video ── */
-    .header-tagline {
-      height: var(--tagline-h);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-top: 1px solid rgba(0,204,255,0.12);
-      padding: 0 max(5vw, 16px);
-      overflow: hidden;
-    }
-    .header-tagline-text {
-      font-size: clamp(0.58rem, 1.2vw, 0.7rem);
-      letter-spacing: clamp(1.5px, 0.45vw, 3.5px);
-      text-transform: uppercase;
-      color: rgba(160,230,255,0.6);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      text-align: center;
-    }
-    .header-tagline-text .sep {
-      color: rgba(0,204,255,0.4);
-      margin: 0 0.7em;
     }
 
     /* ====================== LOGO — NEW 2×2 GRID LAYOUT ====================== */
@@ -183,21 +169,21 @@
 
     /* Row 1 — large words */
     .logo-wave {
-      font-size: clamp(1.85rem, 3.8vw, 3.2rem);
+      font-size: clamp(2.4rem, 4.8vw, 4.2rem);
     }
     .logo-on {
-      font-size: clamp(1.55rem, 3.1vw, 2.65rem);
+      font-size: clamp(2.0rem, 3.9vw, 3.4rem);
       opacity: 0.78;
       justify-self: start;
     }
 
     /* Row 2 */
     .logo-radio {
-      font-size: clamp(1.2rem, 2.5vw, 2.0rem);
+      font-size: clamp(1.55rem, 3.1vw, 2.65rem);
       letter-spacing: 2px;
     }
     .logo-pulse {
-      font-size: clamp(1.25rem, 2.6vw, 2.1rem);
+      font-size: clamp(1.6rem, 3.2vw, 2.75rem);
       letter-spacing: 2px;
       justify-self: start;
     }
@@ -339,7 +325,8 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: brightness(1.0) saturate(1.2); /* full brightness — no text over graphic */
+      object-position: center 15%; /* shifts video upward — black dead zone slides under header */
+      filter: brightness(1.05) saturate(1.2);
     }
     .hero-overlay {
       position: absolute;
@@ -761,29 +748,29 @@
     @media (max-width: 900px) {
       nav { display: none; }
       .hamburger { display: flex; }
-      /* Sound toggle stays visible — user needs it for .mp4 audio */
-      .header-tagline-text { font-size: 0.56rem; letter-spacing: 1px; }
     }
 
     @media (max-width: 600px) {
-      :root { --header-row-h: 58px; --tagline-h: 24px; --header-h: 82px; --bars-h: 134px; }
-      .marquee-text { font-size: 0.88rem; letter-spacing: 2px; }
-      .logo-wave, .logo-on     { font-size: 1.62rem; }
-      .logo-on                 { font-size: 1.35rem; }
-      .logo-radio, .logo-pulse { font-size: 1.08rem; }
+      :root {
+        --header-h:  62px;
+        --bars-h:   114px;
+      }
+      .marquee-text  { font-size: 0.88rem; letter-spacing: 2px; }
+      /* Logo scales down gracefully */
+      .logo-wave     { font-size: 1.9rem; }
+      .logo-on       { font-size: 1.55rem; }
+      .logo-radio    { font-size: 1.2rem; }
+      .logo-pulse    { font-size: 1.25rem; }
+      .logo-grid     { column-gap: 0.6em; }
       .section-title { margin-bottom: 2rem; }
-      .feature-card { padding: 1.6rem 1.2rem; }
-      .addr-row { flex-direction: column; align-items: stretch; }
-      .copy-btn { width: 100%; justify-content: center; text-align: center; }
-      .donate-grid { grid-template-columns: 1fr; }
-      #scroll-top { right: 12px; }
-      .header-tagline { display: none; } /* too tight on phones */
+      .feature-card  { padding: 1.6rem 1.2rem; }
+      #scroll-top    { right: 12px; }
     }
 
     /* Landscape mobile */
     @media (max-height: 500px) and (orientation: landscape) {
-      .hero { min-height: 380px; }
-      .hero-scroll-hint { display: none; }
+      .hero              { min-height: 380px; }
+      .hero-scroll-hint  { display: none; }
     }
   </style>
 </head>
@@ -829,17 +816,6 @@
         <a href="#about"      class="nav-link" data-section="about">About</a>
         <a href="#donate"     class="nav-link nav-donate" data-section="donate">💰 Donate</a>
       </nav>
-    </div>
-
-    <!-- Tagline strip — sits below nav buttons, above the hero graphic -->
-    <div class="header-tagline" aria-label="Site tagline">
-      <p class="header-tagline-text">
-        Live on PulseChain
-        <span class="sep">•</span>
-        Radio That Can't Be Silenced
-        <span class="sep">•</span>
-        Free Speech Broadcasts Permanently Engraved on the PulseChain Blockchain via Pulse Underground
-      </p>
     </div>
   </header>
 
