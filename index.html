@@ -46,8 +46,8 @@
       --neon-cyan:    #00ccff;
       --neon-pink:    #ff006e;
       --marquee-h:    52px;
-      --header-h:     76px;   /* slightly taller to breathe with bigger logo */
-      --bars-h:       128px;  /* marquee + header */
+      --header-h:     96px;   /* taller for bigger logo */
+      --bars-h:       148px;  /* marquee + header */
       --np-h:         70px;
       --safe-bottom:  env(safe-area-inset-bottom, 0px);
     }
@@ -143,7 +143,9 @@
       cursor: pointer;
       user-select: none;
       flex-shrink: 0;
-      display: block;
+      display: flex;
+      align-items: flex-end;  /* sit toward bottom of header — wave crests rise into header space */
+      padding-bottom: 6px;
       line-height: 1;
     }
     .logo-grid {
@@ -169,21 +171,21 @@
 
     /* Row 1 — large words */
     .logo-wave {
-      font-size: clamp(2.4rem, 4.8vw, 4.2rem);
+      font-size: clamp(2.8rem, 5.5vw, 5.0rem);
     }
     .logo-on {
-      font-size: clamp(2.0rem, 3.9vw, 3.4rem);
+      font-size: clamp(2.3rem, 4.5vw, 4.1rem);
       opacity: 0.78;
       justify-self: start;
     }
 
     /* Row 2 */
     .logo-radio {
-      font-size: clamp(1.55rem, 3.1vw, 2.65rem);
+      font-size: clamp(1.8rem, 3.6vw, 3.1rem);
       letter-spacing: 2px;
     }
     .logo-pulse {
-      font-size: clamp(1.6rem, 3.2vw, 2.75rem);
+      font-size: clamp(1.85rem, 3.7vw, 3.2rem);
       letter-spacing: 2px;
       justify-self: start;
     }
@@ -223,10 +225,10 @@
       will-change: transform, filter;
     }
 
-    /* Hover — switch to wilder animation, tighten timing */
+    /* Hover — switch to wilder animation, slower so you can appreciate it */
     .logo-container:hover .wl {
       animation-name: oceanWaveHover;
-      animation-duration: 1.05s;
+      animation-duration: 2.0s;
       animation-timing-function: ease-in-out;
     }
 
@@ -260,15 +262,14 @@
     .nav-link {
       color: #e0f7ff;
       text-decoration: none;
-      padding: 0.48rem 0.85rem;
+      padding: 0.58rem 1.05rem;
       border-radius: 10px;
       background: rgba(0,153,255,0.13);
       border: 1px solid rgba(0,204,255,0.32);
       transition: all 0.3s ease;
-      font-size: 0.88rem;
+      font-size: 0.98rem;
       white-space: nowrap;
-      /* Minimum tap target */
-      min-height: 36px;
+      min-height: 38px;
       display: inline-flex;
       align-items: center;
     }
@@ -761,25 +762,23 @@
 
     @media (max-width: 600px) {
       :root {
-        --header-h:  62px;
-        --bars-h:   114px;
+        --header-h:  72px;
+        --bars-h:   124px;
       }
       .marquee-text  { font-size: 0.88rem; letter-spacing: 2px; }
-      /* Logo scales down gracefully */
-      .logo-wave     { font-size: 1.9rem; }
-      .logo-on       { font-size: 1.55rem; }
-      .logo-radio    { font-size: 1.2rem; }
-      .logo-pulse    { font-size: 1.25rem; }
-      .logo-grid     { column-gap: 0.6em; }
+      .logo-wave     { font-size: 2.0rem; }
+      .logo-on       { font-size: 1.65rem; }
+      .logo-radio    { font-size: 1.25rem; }
+      .logo-pulse    { font-size: 1.3rem; }
+      .logo-grid     { column-gap: 0.55em; }
       .section-title { margin-bottom: 2rem; }
       .feature-card  { padding: 1.6rem 1.2rem; }
       #scroll-top    { right: 12px; }
     }
 
-    /* Landscape mobile */
     @media (max-height: 500px) and (orientation: landscape) {
-      .hero              { min-height: 380px; }
-      .hero-scroll-hint  { display: none; }
+      .hero             { min-height: 380px; }
+      .hero-scroll-hint { display: none; }
     }
   </style>
 </head>
@@ -821,7 +820,6 @@
         <a href="#live"       class="nav-link" data-section="live">Live</a>
         <a href="#podcasts"   class="nav-link" data-section="podcasts">Podcasts</a>
         <a href="#schedule"   class="nav-link" data-section="schedule">Schedule</a>
-        <a href="#howitworks" class="nav-link" data-section="howitworks">How It Works</a>
         <a href="#about"      class="nav-link" data-section="about">About</a>
         <a href="#donate"     class="nav-link nav-donate" data-section="donate">💰 Donate</a>
       </nav>
@@ -835,7 +833,6 @@
     <a href="#live"       class="nav-link mobile-nav-link">Live</a>
     <a href="#podcasts"   class="nav-link mobile-nav-link">Podcasts</a>
     <a href="#schedule"   class="nav-link mobile-nav-link">Schedule</a>
-    <a href="#howitworks" class="nav-link mobile-nav-link">How It Works</a>
     <a href="#about"      class="nav-link mobile-nav-link">About</a>
     <a href="#donate"     class="nav-link nav-donate mobile-nav-link">💰 Donate</a>
   </div>
@@ -863,14 +860,17 @@
       </div>
     </section>
 
-    <!-- =================== WHY WAVE =================== -->
-    <section class="section" id="features">
+    <!-- =================== WHY WAVE + HOW IT WORKS (combined) =================== -->
+    <section class="section" id="features" style="background:linear-gradient(180deg,#0a0a0a,#0c1525,#0a0a0a);">
       <div class="container">
+
+        <!-- ── Part 1: Why ── -->
         <h2 class="section-title">Why Wave on Pulse?</h2>
-        <p style="max-width:920px; margin:0 auto clamp(2.5rem,5vw,4.5rem); text-align:center; font-size:clamp(1rem,2.2vw,1.2rem); line-height:1.72; opacity:0.88;">
+        <p style="max-width:900px; margin:0 auto clamp(2.5rem,5vw,4rem); text-align:center; font-size:clamp(1rem,2.2vw,1.18rem); line-height:1.75; opacity:0.88;">
           We believe conversations about freedom, money, and the future should never be silenced or memory-holed.
-          Wave on Pulse broadcasts live, unfiltered discussions and <strong>permanently engraves</strong> them on the PulseChain blockchain.
+          Wave on Pulse broadcasts live, unfiltered discussions and <strong>permanently engraves</strong> them on the PulseChain blockchain — immutable forever.
         </p>
+
         <div class="features-grid">
           <div class="feature-card">
             <span class="feature-icon">🗣️</span>
@@ -913,10 +913,61 @@
             <p>Every word on-chain, independently verifiable by anyone, forever. No middleman, no authority — just math and consensus.</p>
           </div>
         </div>
+
+        <!-- ── Divider ── -->
+        <div style="margin:clamp(4rem,8vw,7rem) auto 0; max-width:600px; height:1px; background:linear-gradient(90deg,transparent,rgba(0,204,255,0.4),transparent);"></div>
+
+        <!-- ── Part 2: How It Works ── -->
+        <div style="max-width:940px; margin:clamp(3.5rem,7vw,6rem) auto 0; text-align:center;">
+          <h2 class="section-title" style="margin-bottom:1.2rem;">How It Works</h2>
+          <p style="font-size:clamp(1rem,2.2vw,1.15rem); margin-bottom:clamp(2.5rem,5vw,4rem); opacity:0.85; line-height:1.72;">
+            Wave on Pulse combines the energy of <strong>live radio</strong> with the permanence of the <strong>PulseChain blockchain</strong>.
+          </p>
+
+          <div class="features-grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));">
+            <div class="feature-card" style="border-color:#00ccff;">
+              <span class="feature-icon">📡</span>
+              <h3 style="color:#00ffff;">1. Live Broadcast</h3>
+              <p>Raw conversations on X Spaces and other platforms. No scripts, no censorship, no middleman.</p>
+            </div>
+            <div class="feature-card" style="border-color:#ff66cc;">
+              <span class="feature-icon">✍️</span>
+              <h3 style="color:#ff99dd;">2. Transcription</h3>
+              <p>Key moments transcribed by our team — human-assisted for quality today, automated tomorrow.</p>
+            </div>
+            <div class="feature-card" style="border-color:#00ffaa;">
+              <span class="feature-icon">⛓️</span>
+              <h3 style="color:#00ffcc;">3. On-Chain Publishing</h3>
+              <p>Content permanently written to PulseChain via <strong>Pulse Underground</strong> — immutable and uncensorable.</p>
+            </div>
+          </div>
+
+          <!-- Reality box -->
+          <div style="margin-top:clamp(2.5rem,5vw,4.5rem); padding:clamp(1.8rem,4vw,2.8rem); background:rgba(10,18,40,0.75); border:2px solid rgba(0,204,255,0.4); border-radius:22px; text-align:left;">
+            <div style="display:flex; flex-wrap:wrap; gap:2rem;">
+              <div style="flex:1; min-width:220px;">
+                <p style="font-size:0.78rem; letter-spacing:3px; text-transform:uppercase; color:var(--neon-cyan); margin-bottom:0.6rem; opacity:0.75;">Current Reality</p>
+                <p style="font-size:clamp(0.95rem,2vw,1.08rem); line-height:1.75; opacity:0.88;">Hybrid system — human-driven live shows with a fully decentralized on-chain backend. Every word that hits the blockchain stays there forever.</p>
+              </div>
+              <div style="flex:1; min-width:220px;">
+                <p style="font-size:0.78rem; letter-spacing:3px; text-transform:uppercase; color:#00ffcc; margin-bottom:0.6rem; opacity:0.75;">The Roadmap</p>
+                <p style="font-size:clamp(0.95rem,2vw,1.08rem); line-height:1.75; opacity:0.88;">Full automation — real-time transcription and publishing directly to chain as broadcasts happen, with zero human intervention required.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <div style="margin-top:clamp(2rem,4vw,3.5rem);">
+            <a href="https://hyperlightcoder.github.io/Pulse-Underground/"
+               target="_blank" rel="noopener noreferrer"
+               class="cta-primary" style="display:inline-flex;">
+              Explore Pulse Underground →
+            </a>
+          </div>
+        </div>
+
       </div>
     </section>
-
-    <!-- =================== LIVE =================== -->
     <section class="section" id="live">
       <div class="container">
         <h2 class="section-title">Now Live</h2>
@@ -966,48 +1017,6 @@
           <a href="https://x.com/WaveOnPulse" target="_blank" rel="noopener noreferrer" class="outline-link">
             Get notified on X →
           </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- =================== HOW IT WORKS =================== -->
-    <section class="section" id="howitworks" style="background:linear-gradient(180deg,#0a0a0a,#0f1b2e);">
-      <div class="container">
-        <h2 class="section-title">How It Works</h2>
-        <div style="max-width:920px; margin:0 auto; text-align:center;">
-          <p style="font-size:clamp(1rem,2.2vw,1.18rem); margin-bottom:clamp(2.5rem,5vw,4rem); opacity:0.88; line-height:1.72;">
-            Wave on Pulse combines the energy of <strong>live radio</strong> with the permanence of the <strong>PulseChain blockchain</strong>.
-          </p>
-          <div class="features-grid">
-            <div class="feature-card" style="border-color:#00ccff;">
-              <span class="feature-icon">📡</span>
-              <h3 style="color:#00ffff;">1. Live Broadcast</h3>
-              <p>Raw conversations on X Spaces and other platforms. No scripts, no censorship.</p>
-            </div>
-            <div class="feature-card" style="border-color:#ff66cc;">
-              <span class="feature-icon">✍️</span>
-              <h3 style="color:#ff99dd;">2. Transcription</h3>
-              <p>Our team transcribes key moments. Currently human-assisted for quality — automation coming.</p>
-            </div>
-            <div class="feature-card" style="border-color:#00ffaa;">
-              <span class="feature-icon">⛓️</span>
-              <h3 style="color:#00ffcc;">3. On-Chain Publishing</h3>
-              <p>Content is permanently written to PulseChain using <strong>Pulse Underground</strong> — immutable and uncensorable.</p>
-            </div>
-          </div>
-          <div style="margin-top:clamp(2.5rem,5vw,4.5rem); padding:clamp(1.8rem,4vw,3rem); background:rgba(10,18,40,0.75); border:2px solid rgba(0,204,255,0.45); border-radius:22px;">
-            <p style="font-size:clamp(0.95rem,2vw,1.14rem); line-height:1.82;">
-              <strong>Current Reality:</strong> Hybrid system — human-driven live shows with a fully decentralized on-chain backend.<br><br>
-              <span style="color:#00ffcc;">Future:</span> Moving toward full automation with real-time transcription and publishing directly to chain.
-            </p>
-          </div>
-          <div style="margin-top:clamp(2rem,4vw,3.5rem);">
-            <a href="https://hyperlightcoder.github.io/Pulse-Underground/"
-               target="_blank" rel="noopener noreferrer"
-               class="cta-primary" style="display:inline-flex;">
-              Explore Pulse Underground →
-            </a>
-          </div>
         </div>
       </div>
     </section>
