@@ -3,36 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="#0a0a0a">
+  <meta name="theme-color" content="#000000">
   <meta name="description" content="Wave on Pulse - Live Free Speech Radio permanently archived on PulseChain using Pulse Underground.">
   <!-- Open Graph / social preview -->
-  <meta property="og:type"        content="website">
-  <meta property="og:url"         content="https://waveonpulse.com">
-  <meta property="og:title"       content="Wave on Pulse — Live Free Speech Radio on PulseChain">
-  <meta property="og:description" content="Live unfiltered radio permanently engraved on the PulseChain blockchain. Uncensorable. Forever.">
-  <meta property="og:image"       content="https://waveonpulse.com/public/hero-poster.jpg">
-  <meta name="twitter:card"       content="summary_large_image">
-  <meta name="twitter:site"       content="@WaveOnPulse">
-  <meta name="twitter:title"      content="Wave on Pulse — Live Free Speech Radio on PulseChain">
+  <meta property="og:type"         content="website">
+  <meta property="og:url"          content="https://waveonpulse.com">
+  <meta property="og:title"        content="Wave on Pulse — Live Free Speech Radio on PulseChain">
+  <meta property="og:description"  content="Live unfiltered radio permanently engraved on the PulseChain blockchain. Uncensorable. Forever.">
+  <meta property="og:image"        content="https://waveonpulse.com/public/hero-poster.jpg">
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:site"        content="@WaveOnPulse">
+  <meta name="twitter:title"       content="Wave on Pulse — Live Free Speech Radio on PulseChain">
   <meta name="twitter:description" content="Live unfiltered radio permanently engraved on the PulseChain blockchain.">
-  <meta name="twitter:image"      content="https://waveonpulse.com/public/hero-poster.jpg">
-
-  <!-- Open Graph / Social sharing -->
-  <meta property="og:type"        content="website">
-  <meta property="og:url"         content="https://waveonpulse.com">
-  <meta property="og:title"       content="Wave on Pulse — Free Speech Radio on PulseChain">
-  <meta property="og:description" content="Live uncensored broadcasts permanently archived on the PulseChain blockchain via Pulse Underground.">
-  <meta property="og:image"       content="https://waveonpulse.com/public/hero-poster.jpg">
-  <meta name="twitter:card"       content="summary_large_image">
-  <meta name="twitter:site"       content="@WaveOnPulse">
-  <meta name="twitter:title"      content="Wave on Pulse — Free Speech Radio on PulseChain">
-  <meta name="twitter:description" content="Live uncensored broadcasts permanently archived on PulseChain.">
-  <meta name="twitter:image"      content="https://waveonpulse.com/public/hero-poster.jpg">
+  <meta name="twitter:image"       content="https://waveonpulse.com/public/hero-poster.jpg">
 
   <title>Wave on Pulse</title>
-  <meta name="theme-color" content="#080c19">
   <link rel="icon" type="image/x-icon" href="public/WaveLogo.jpg">
 
   <link rel="preload" as="image" href="public/hero-poster.jpg">
@@ -88,23 +73,42 @@
       display: flex;
       align-items: center;
       overflow: hidden;
-      background: #000;   /* solid black — title stays fully readable as it animates up */
-      border-bottom: 2px solid var(--neon-cyan);
-      box-shadow: 0 0 18px rgba(0,204,255,0.2), 0 4px 12px rgba(0,0,0,0.8);
+      background: #000;
+      border-bottom: 2px solid rgba(180,0,255,0.55);
+      box-shadow: 0 0 20px rgba(180,0,255,0.18), 0 4px 12px rgba(0,0,0,0.9);
     }
     .marquee-track {
       display: flex;
       width: max-content;
       animation: marqueeScroll 55s linear infinite;
     }
+    /* PulseChain brand gradient: hot red-pink → magenta → violet-purple */
     .marquee-text {
       font-size: clamp(0.95rem, 2.8vw, 1.15rem);
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: #e0f7ff;
-      text-shadow: 0 0 12px var(--neon-cyan);
       white-space: nowrap;
       padding-right: 8rem;
+      /* Gradient applied as background-clip text — matches PulseChain logo palette */
+      background: linear-gradient(
+        90deg,
+        #ff0055 0%,
+        #ff00aa 20%,
+        #cc00ff 45%,
+        #8833ff 65%,
+        #5500dd 80%,
+        #ff0055 100%
+      );
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: marqueeScroll 55s linear infinite,
+                 pulseGradient 6s linear infinite;
+    }
+    @keyframes pulseGradient {
+      0%   { background-position: 0%   center; }
+      100% { background-position: 200% center; }
     }
     @keyframes marqueeScroll {
       0%   { transform: translateX(0); }
@@ -143,8 +147,8 @@
       user-select: none;
       flex-shrink: 0;
       display: flex;
-      align-items: flex-end;  /* sit toward bottom of header — wave crests rise into header space */
-      padding-bottom: 6px;
+      align-items: flex-end;
+      padding-bottom: 14px; /* pushed further down — wave crests into header space */
       line-height: 1;
     }
     .logo-grid {
@@ -292,33 +296,36 @@
 
     /* ====================== MOBILE MENU ====================== */
     .mobile-menu {
-      display: none;
+      /* Use visibility instead of display:none — allows CSS transitions to fire */
       position: fixed;
       top: var(--bars-h);
       left: 0;
       right: 0;
-      background: rgba(6,10,22,0.98);
+      background: rgba(4,8,20,0.98);
       backdrop-filter: blur(22px);
-      border-bottom: 1px solid rgba(0,204,255,0.3);
+      border-bottom: 1px solid rgba(0,204,255,0.28);
       padding: 1.2rem max(5vw, 16px);
       z-index: 1000;
+      display: flex;
       flex-direction: column;
       gap: 0.6rem;
-      /* Animate in */
-      transform: translateY(-8px);
+      /* Hidden state */
+      visibility: hidden;
       opacity: 0;
-      transition: opacity 0.25s ease, transform 0.25s ease;
+      transform: translateY(-10px);
+      transition: opacity 0.22s ease, transform 0.22s ease, visibility 0s linear 0.22s;
     }
     .mobile-menu.active {
-      display: flex;
-      transform: translateY(0);
+      visibility: visible;
       opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.22s ease, transform 0.22s ease, visibility 0s linear 0s;
     }
     .mobile-menu .nav-link {
       font-size: 1.08rem;
       padding: 0.9rem 1.2rem;
       text-align: center;
-      min-height: 48px; /* proper touch target */
+      min-height: 48px;
       justify-content: center;
     }
 
@@ -328,12 +335,12 @@
     /* ====================== HERO ====================== */
     .hero {
       position: relative;
-      /* Bleed 90px upward behind the sticky header — hides the black dead zone
-         at the top of the video. Header z-index:10000 covers the overlap. */
-      margin-top: -90px;
-      height: calc(100dvh - var(--bars-h) + 90px);
-      height: calc(100vh  - var(--bars-h) + 90px);
-      min-height: 580px;
+      /* Bleed 45px upward behind sticky header — less aggressive than before.
+         Hides the dark dead zone at top of the video file. */
+      margin-top: -45px;
+      height: calc(100dvh - var(--bars-h) + 45px);
+      height: calc(100vh  - var(--bars-h) + 45px);
+      min-height: 560px;
     }
     .hero-video { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
     #hero-video {
@@ -345,10 +352,20 @@
     .hero-overlay {
       position: absolute;
       inset: 0;
-      /* Subtle vignette only — keeps graphic vivid */
-      background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,10,0.22) 100%);
       z-index: 1;
       pointer-events: none;
+      /* Subtle edge vignette + strong bottom fade to cover watermark */
+      background:
+        /* Bottom fade — covers Veo watermark in bottom-right corner */
+        linear-gradient(
+          to top,
+          #0a0a0a 0%,
+          rgba(10,10,10,0.85) 10%,
+          rgba(10,10,10,0.4)  18%,
+          transparent 28%
+        ),
+        /* Edge vignette — keeps graphic vivid in the center */
+        radial-gradient(ellipse at center, transparent 55%, rgba(0,0,10,0.18) 100%);
     }
 
     /* cta-primary still used in How It Works section */
