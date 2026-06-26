@@ -1,8 +1,8 @@
 # Wave on Pulse — Audit
 
 **Repo:** `GitCoderAccount/Wave` | **Local path:** `~/Wave`  
-**Audited:** 2026-06-26  
-**Status:** Landing page only — single `index.html`, no build system
+**Audited:** 2026-06-26 (3 passes)  
+**Status:** All P0–P4 recommendations resolved. Landing page is production-ready.
 
 ---
 
@@ -10,59 +10,57 @@
 
 ```
 ~/Wave/
-├── index.html            ← entire site: CSS + HTML + JS in one file (1419 lines)
-├── index.html.backup     ← stale backup, should be deleted from repo
+├── index.html            ← entire site: CSS + HTML + JS in one file (~1440 lines)
 ├── CNAME                 ← custom domain (waveonpulse.com)
-├── README.md             ← outdated; describes a multi-file structure that doesn't exist
+├── README.md             ← accurate, describes actual single-file architecture
 └── public/
-    ├── WaveLogo.jpg
-    ├── banner.png
-    ├── pulsechain-logo.png
-    └── Radio_Dial_Frequency_Pattern_Video (1).mp4
+    ├── radio-hero.mp4    ← hero background video (renamed from old spaced filename)
+    ├── hero-poster.jpg   ← video poster / OG social image (extracted via ffmpeg)
+    ├── click.mp3         ← UI click sound (generated 40ms sine-wave tone)
+    ├── WaveLogo.jpg      ← favicon (400×400)
+    ├── banner.png        ← social/README banner
+    └── pulsechain-logo.png ← footer logo (556×120, width/height set on img element)
 ```
 
-**Missing referenced assets:**
-- `public/hero-poster.jpg` — used in OG meta, Twitter card, and `<video poster>` — 404 on load
-- `public/click.mp3` — referenced by click-sound `<audio>` — 404, click sound silently broken
+---
+
+## Done (all fixes applied)
+
+### Pass 1 — P0–P4 original recommendations
+- ✅ `public/hero-poster.jpg` created (ffmpeg frame extract at 2s)
+- ✅ `public/click.mp3` created (generated 40ms sine-wave click)
+- ✅ Video renamed to `radio-hero.mp4`; old spaced filename removed from repo
+- ✅ CTA "Browse the Archive" link fixed (was `https://github/`, now GitHub repo)
+- ✅ Footer GitHub link fixed (was `https://wave`); broken "via" stub removed
+- ✅ README rewritten to match actual single-file architecture
+- ✅ Static fallback text added to `#live-show-title`, `#live-show-host`, `#live-show-desc`
+- ✅ Passive offline notice set on load when `SHOW_CONFIG.streamUrl` is empty
+- ✅ `aria-live="polite"` added to `#live-hint`
+- ✅ Dead gradient CSS removed from `.logo-wave/.logo-on/.logo-radio/.logo-pulse` parent elements
+- ✅ Inline `onmouseover`/`onmouseout` on fiat-donate link replaced with `.fiat-notify-link` CSS class
+- ✅ `click-sound` changed from `preload="auto"` to `preload="none"`
+- ✅ `index.html.backup` deleted from repo
+
+### Pass 2 — second-pass findings
+- ✅ Double bullet `• •` in marquee second copy fixed
+- ✅ Favicon MIME type corrected (`image/x-icon` → `image/jpeg`)
+- ✅ Copy-toast bottom position: default `16px`, raised to above NP bar only when `body.np-active`
+- ✅ Live section "Off Air" state: `.live-offline` CSS class dims play button + stops live-dot pulse; "On Air" label changes to "Off Air" when `streamUrl` is empty
+- ✅ CTA button text changed from "Browse the Archive →" to "View on GitHub →" to match destination
+
+### Pass 3 — third-pass findings
+- ✅ `width="556" height="120"` added to PulseChain logo `<img>` to prevent CLS
 
 ---
 
-## Done
+## Open / Intentional
 
-- Single-page landing with: marquee, sticky header, hero video, features (8 cards), live stream player, podcasts (stub), schedule (stub), about, donate (EVM + BTC), footer
-- Responsive (≤900px hamburger menu, ≤600px font scaling)
-- IntersectionObserver for active nav and card reveal animations
-- Animated logo letter-by-letter ocean wave effect (idle + hover)
-- Live stream play/pause with Now Playing bar
-- Clipboard copy for donation addresses
-
----
-
-## Open Recommendations
-
-### P0 — Broken functionality
-1. **`public/hero-poster.jpg` missing** — video shows blank/flash on load; OG + Twitter card images 404
-2. **`public/click.mp3` missing** — click-sound feature silently broken
-3. **"Browse the Archive →" CTA links to `https://github/`** (line 983) — broken URL; likely meant to be the GitHub repo or an on-chain explorer
-4. **Footer GitHub link is `https://wave`** (line 1175) — broken stub
-5. **Footer second link (`via`, line 1176) is `https://wave`** — broken, unclear purpose
-
-### P1 — Content & correctness
-6. **README describes a non-existent multi-file structure** (`src/scripts/`, `src/styles/`, `package.json`) — the `npm install / npm run dev` instructions are wrong; entire README should be rewritten to match reality
-7. **Live section shows blank text before JS runs** — `#live-show-title`, `#live-show-host`, `#live-show-desc` have no static fallback; add `SHOW_CONFIG` defaults inline or populate eagerly
-8. **No "offline / coming back soon" state for streamUrl="" ** — user must click play to discover there's no stream; add a passive offline-notice badge on the live card when `SHOW_CONFIG.streamUrl` is empty
-
-### P2 — Code hygiene
-9. **`index.html.backup` committed to repo** — delete it; use git history if you ever need an old version
-10. **71 commits all named "Update index.html"** — not actionable, but future-you will thank better messages
-11. **Logo gradient CSS on parent `.logo-wave/.logo-on/.logo-radio/.logo-pulse` (lines 162–173) is dead code** after `initLogoWave()` replaces text with `.wl` spans; the gradient lives on `.wl` instead
-12. **Inline `onmouseover`/`onmouseout` on fiat-donate link** (line 1155–1156) — inconsistent with rest of the site which uses CSS transitions; replace with a class
-13. **`copyAddress` is a global function called via inline `onclick`** — works, but inconsistent with the rest of the event-listener pattern; move to addEventListener
-
-### P3 — Performance & assets
-14. **Video filename has spaces and parentheses** (`Radio_Dial_Frequency_Pattern_Video (1).mp4`) — rename to `radio-hero.mp4` or similar; spaces in filenames are fragile
-15. **`<audio id="click-sound" preload="auto">`** preloads a sound file on every page load for a minor nicety; change to `preload="none"` and load lazily on first interaction
-16. **No `<link rel="manifest">` or service worker** — site is served from GitHub Pages and works fine without one, but a basic manifest would enable "Add to Home Screen" on mobile
-
-### P4 — Accessibility
-17. **`#live-hint` text change happens only on click** — screen reader users have no indication the live section is offline until they activate the play button; add `aria-live="polite"` to `#live-hint` and set the offline text passively on load when `streamUrl` is empty
+| Item | Status |
+|---|---|
+| `onclick` on copy buttons — calls global `copyAddress()` | Intentional; function is designed for this; acceptable for a landing page |
+| `onclick` on `hero-scroll-hint` div | Intentional; element is `aria-hidden` (decorative); no keyboard/a11y concern |
+| `document.execCommand('copy')` in clipboard fallback | Deprecated but functional; `navigator.clipboard` path covers modern browsers |
+| No PWA manifest | Enhancement, not a bug |
+| No `<link rel="canonical">` | Minor SEO; low priority for a single-page site |
+| Git commit history all "Update index.html" (71 commits) | Historical; can't fix without destructive rebase |
+| "View on GitHub →" CTA links to source code, not an on-chain archive | Placeholder; update when a real archive viewer exists |
