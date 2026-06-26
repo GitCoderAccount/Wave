@@ -1,126 +1,57 @@
 # Wave on Pulse
 
-![Wave on Pulse](public/banner.png)
+Live free speech radio permanently archived on PulseChain. Single-page static site — no build step required.
 
-Decentralized radio platform built on PulseChain with cyber-themed design.
+**Live site:** [waveonpulse.com](https://waveonpulse.com)
 
-## Features
-
-- **PulseChain Integration**: Built with PulseChain color scheme and branding
-- **Cyber Theme**: Futuristic design with neon effects and animations
-- **Dark Mode**: Optimized for low-light viewing with dark backgrounds
-- **Responsive Design**: Works on desktop, tablet, and mobile devices
-- **Audio Player**: Built-in radio player with smooth controls
-- **Censorship-Resistant**: Decentralized broadcasting platform
-
-## Color Scheme
-
-Based on PulseChain branding:
-- Primary Blue: #0099ff (vibrant blue)
-- Dark Background: #0a0a0a (pure black)
-- Accent Colors: Various blues, purples, and cyans
-
-## Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/wave-on-pulse.git
-   cd wave-on-pulse
-   ```
-
-2. Install dependencies (if any):
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-   ```bash
-   npm run dev
-   ```
-
-4. Open your browser and navigate to:
-   ```
-   http://localhost:8080
-   ```
-
-## Project Structure
+## Project structure
 
 ```
 Wave/
-├── public/
-│   └── index.html          # Main HTML file
-├── src/
-│   ├── scripts/
-│   │   └── main.js         # JavaScript functionality
-│   └── styles/
-│       └── main.css         # Complete styling with cyber theme
-├── assets/                 # Images and media files
-└── package.json           # Project configuration
+├── index.html          # Entire site: CSS, HTML, and JS in one file
+├── CNAME               # Custom domain for GitHub Pages
+└── public/
+    ├── radio-hero.mp4  # Hero background video
+    ├── hero-poster.jpg # Video poster / OG image
+    ├── WaveLogo.jpg    # Favicon
+    ├── banner.png      # Social/README banner
+    ├── pulsechain-logo.png
+    └── click.mp3       # UI click sound
 ```
 
-## Key Features
+## Running locally
 
-### Cyber Theme Elements
-- **Neon Glow Effects**: Animated text and button glows
-- **Glitch Animations**: Subtle glitch effects on card entries
-- **Scan Lines**: Moving scan lines for live section
-- **Pulse Effects**: Animated button and number pulses
+No dependencies. Open `index.html` directly in a browser, or serve it with any static server:
 
-### PulseChain Branding
-- **Vibrant Blue Palette**: Consistent use of #0099ff and related colors
-- **Dark Backgrounds**: #0a0a0a background for optimal contrast
-- **Gradient Effects**: Smooth color transitions throughout
-
-### Interactive Features
-- **Audio Player**: Play/pause functionality with progress tracking
-- **Smooth Scrolling**: Navigation with smooth scroll behavior
-- **Hover Effects**: Enhanced hover states with transformations
-- **Loading Animations**: Smooth page load transitions
-
-## Browser Compatibility
-
-- Chrome/Chromium (recommended)
-- Firefox
-- Safari
-- Edge
-
-## Development
-
-### Adding New Features
-1. Update CSS in `src/styles/main.css`
-2. Add JavaScript functionality in `src/scripts/main.js`
-3. Modify HTML structure in `index.html`
-
-### Customizing Colors
-Edit the color variables in the CSS file:
-```css
-:root {
-    --primary-blue: #0099ff;
-    --dark-bg: #0a0a0a;
-    --accent-cyan: #00ffff;
-    --accent-purple: #6f00ff;
-}
+```bash
+python3 -m http.server 8080
+# then visit http://localhost:8080
 ```
 
-## License
+## Configuring the live stream
 
-MIT License - see LICENSE file for details.
+At the top of the `<script>` block in `index.html`, update `SHOW_CONFIG`:
 
-## Contributing
+```js
+const SHOW_CONFIG = {
+  title:       "Show name",
+  host:        "Hosted by ...",
+  description: "Show description.",
+  streamUrl:   "https://your-stream-url.here"  // leave empty when offline
+};
+```
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+When `streamUrl` is empty the live section shows an offline notice automatically.
 
-## Support
+## Deployment
 
-For issues and questions:
-- Create an issue on GitHub
-- Check the FAQ section
-- Review the documentation
+Push to `main` — GitHub Pages deploys automatically via the `CNAME` record pointing to `waveonpulse.com`.
 
----
+## Color palette
 
-**Built with ❤️ for the decentralized future**
+| Token | Hex | Use |
+|---|---|---|
+| Neon cyan | `#00ccff` | Primary accent, borders, links |
+| Neon pink | `#ff006e` | Hover states, donate button |
+| Background | `#0a0a0a` | Page background |
+| Text | `#e0f7ff` | Body copy |
