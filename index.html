@@ -18,7 +18,7 @@
   <meta name="twitter:image"       content="https://waveonpulse.com/public/hero-poster.jpg">
 
   <title>Wave on Pulse</title>
-  <link rel="icon" type="image/x-icon" href="public/WaveLogo.jpg">
+  <link rel="icon" type="image/jpeg" href="public/WaveLogo.jpg">
 
   <link rel="preload" as="image" href="public/hero-poster.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -510,6 +510,8 @@
     }
     #play-live:hover { transform: scale(1.08); box-shadow: 0 0 45px rgba(0,204,255,0.8); }
     #play-live:active { transform: scale(0.96); }
+    .live-offline .live-dot { background: #556; box-shadow: none; animation: none; }
+    .live-offline #play-live { opacity: 0.65; }
 
     /* ====================== COMING SOON ====================== */
     .coming-soon-card {
@@ -601,7 +603,7 @@
     /* ====================== COPY TOAST ====================== */
     .copy-toast {
       position: fixed;
-      bottom: calc(var(--np-h) + 16px);
+      bottom: 16px;
       left: 50%;
       transform: translateX(-50%) translateY(16px);
       background: rgba(0,20,40,0.96);
@@ -792,6 +794,7 @@
     }
     #scroll-top.visible        { opacity: 1; transform: translateY(0); pointer-events: auto; }
     body.np-active #scroll-top { bottom: calc(var(--np-h) + var(--safe-bottom) + 12px); }
+    body.np-active .copy-toast { bottom: calc(var(--np-h) + var(--safe-bottom) + 16px); }
     #scroll-top:hover {
       background: rgba(0,204,255,0.18);
       border-color: var(--neon-cyan);
@@ -875,7 +878,7 @@
   <div class="marquee-container" aria-hidden="true">
     <div class="marquee-track">
       <div class="marquee-text">WAVE ON PULSE • Live Radio → Permanent On-Chain Archive • Hybrid Live + Blockchain • Free Speech • Uncensorable • Built on PulseChain • </div>
-      <div class="marquee-text">WAVE ON PULSE • Live Radio → Permanent On-Chain Archive • Hybrid Live + Blockchain • • Free Speech • Uncensorable • Built on PulseChain • </div>
+      <div class="marquee-text">WAVE ON PULSE • Live Radio → Permanent On-Chain Archive • Hybrid Live + Blockchain • Free Speech • Uncensorable • Built on PulseChain • </div>
     </div>
   </div>
 
@@ -994,7 +997,7 @@
           <div class="wave-callout-col" style="text-align:center; flex-shrink:0;">
             <a href="https://github.com/GitCoderAccount/Wave"
                target="_blank" rel="noopener noreferrer"
-               class="cta-primary">Browse the Archive →</a>
+               class="cta-primary">View on GitHub →</a>
           </div>
         </div>
 
@@ -1054,7 +1057,7 @@
         <div class="live-card">
           <div style="display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:1.4rem;">
             <div class="live-dot"></div>
-            <span style="font-size:0.82rem; letter-spacing:3px; text-transform:uppercase; color:var(--neon-cyan);">On Air</span>
+            <span id="live-status-label" style="font-size:0.82rem; letter-spacing:3px; text-transform:uppercase; color:var(--neon-cyan);">On Air</span>
           </div>
           <h3 id="live-show-title" style="font-size:clamp(1.4rem,4vw,2.1rem); margin-bottom:0.7rem;">PulseChain Pioneers</h3>
           <p  id="live-show-host"  style="margin-bottom:1.2rem; opacity:0.8; font-size:clamp(0.95rem,2vw,1.08rem);">Hosted by Wave on Pulse</p>
@@ -1282,12 +1285,16 @@
       if (SHOW_CONFIG.streamUrl && liveAudio) {
         liveAudio.src = SHOW_CONFIG.streamUrl;
       } else {
-        const offlineHint = document.getElementById('live-hint');
+        const offlineHint  = document.getElementById('live-hint');
+        const statusLabel  = document.getElementById('live-status-label');
+        const liveCard     = document.querySelector('#live .live-card');
         if (offlineHint) {
           offlineHint.textContent = 'No live stream active right now. Follow @WaveOnPulse on X.';
           offlineHint.style.opacity = '0.9';
           offlineHint.style.color   = '#ff99dd';
         }
+        if (statusLabel) statusLabel.textContent = 'Off Air';
+        if (liveCard)    liveCard.classList.add('live-offline');
       }
 
       // ── Video sound toggle — unmutes the .mp4 video itself ──
